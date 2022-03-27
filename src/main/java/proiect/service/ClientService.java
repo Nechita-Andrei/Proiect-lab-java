@@ -1,8 +1,8 @@
 package proiect.service;
 
 
-import org.springframework.dao.DataIntegrityViolationException;
 import proiect.domain.Client;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.domain.Cont;

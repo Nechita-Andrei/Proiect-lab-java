@@ -2,18 +2,17 @@ package proiect.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
-import proiect.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import proiect.domain.*;
 import proiect.service.ClientException;
 import proiect.service.ZborException;
 import proiect.service.ZborService;
 
 import java.net.URI;
 import java.sql.Date;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Collection;
 
 @RestController

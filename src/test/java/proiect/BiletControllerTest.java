@@ -1,5 +1,4 @@
 package proiect;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +7,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import proiect.controller.BiletController;
-import proiect.controller.ClientController;
 import proiect.domain.*;
 import proiect.repository.*;
-import proiect.service.BiletService;
 import proiect.service.ClientException;
 
 import java.sql.Date;

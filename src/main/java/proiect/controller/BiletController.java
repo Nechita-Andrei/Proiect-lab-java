@@ -1,14 +1,13 @@
 package proiect.controller;
 
 
-import org.springframework.http.MediaType;
 import proiect.domain.Client;
 import proiect.domain.Zbor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import proiect.service.ClientException;
 import proiect.service.BiletService;
+import proiect.service.ClientException;
 import proiect.service.ZborException;
 
 import java.sql.Date;

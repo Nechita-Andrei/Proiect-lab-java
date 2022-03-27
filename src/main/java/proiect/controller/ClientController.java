@@ -1,18 +1,16 @@
 package proiect.controller;
 
 
+import proiect.domain.Client;
+import proiect.domain.Cont;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
-import proiect.domain.Client;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import proiect.domain.Cont;
 import proiect.service.ClientException;
 import proiect.service.ClientService;
 
-import java.net.URI;
 import java.util.Collection;
 
 @RestController

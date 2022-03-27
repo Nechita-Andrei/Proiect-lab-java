@@ -14,7 +14,6 @@ import proiect.controller.ZborController;
 import proiect.domain.*;
 import proiect.repository.*;
 import proiect.service.ClientException;
-import proiect.service.ZborException;
 
 import static org.mockito.Mockito.lenient;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

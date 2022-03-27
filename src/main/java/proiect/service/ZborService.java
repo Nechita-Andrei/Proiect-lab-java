@@ -8,7 +8,6 @@ import proiect.domain.*;
 import proiect.repository.*;
 
 import java.sql.Date;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 @Service
@@ -37,7 +36,7 @@ public class ZborService {
     }
 
     //functie care verifica credentialele date de user
-    public boolean logare(Client client,String parola){
+    public boolean logare(Client client, String parola){
 
         return client.getParola().equals(parola);
 
@@ -55,7 +54,7 @@ public class ZborService {
 
     }
 
-    public Pilot addPilot(String nume, String prenume,int vartsa, double salariu, String experienta,String email, String parola) throws DataIntegrityViolationException{
+    public Pilot addPilot(String nume, String prenume, int vartsa, double salariu, String experienta, String email, String parola) throws DataIntegrityViolationException{
         Optional<Client>client= clientRepo.findByEmail(email);
         if(!client.isPresent()){
             throw ClientException.clientNotFound();
@@ -96,7 +95,7 @@ public class ZborService {
 
    }
 
-    public Aeroport addAeroport(String denumire, String localitate, int capacitate,String email, String parola)throws DataIntegrityViolationException{
+    public Aeroport addAeroport(String denumire, String localitate, int capacitate, String email, String parola)throws DataIntegrityViolationException{
         Optional<Client>client= clientRepo.findByEmail(email);
         if(!client.isPresent()){
             throw ClientException.clientNotFound();
