@@ -21,8 +21,15 @@ public class ClientService {
     public ContRepo contRepo;
 
     //adaugare cont
-    public Cont addCont(String banca, int suma, String numar_card) throws DataIntegrityViolationException{
+    public Cont addCont(String banca, int suma, String numar_card){
         return contRepo.save(new Cont(banca,suma, numar_card));
+    }
+    public Client getClientById(int id){
+        Optional<Client>client=clientRepo.findById(id);
+        if(!client.isPresent()) {
+            throw ClientException.clientNotFound();
+        }
+        return client.get();
     }
 
     //returneaza un client dupa un email dat

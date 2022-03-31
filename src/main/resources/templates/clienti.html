@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clienti</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div th:if="${some!=''}" th:text="${some}" th:style="('color:'+${color})"></div>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Eligibil discount</th>
+            <th>Cont</th>
+            <th>Actiuni</th>
+
+        </tr>
+        </thead>
+        <tr th:each="client: ${clienti}">
+            <td th:text="${client.id}"></td>
+            <td th:text="${client.nume}"></td>
+            <td th:text="${client.prenume}"></td>
+            <td th:text="${client.email}"></td>
+            <td th:text="${client.telefon}"></td>
+            <td th:text="${client.discount}"></td>
+            <td><a href="#" th:href="@{'/client/' + ${client.id}}">Detalii cont</a></td>
+            <td><a href="#" th:href="@{'/bilet/client/' + ${client.email}+'/verifica_discount'}">Verifica discount</a></td>
+
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor'}">Vizualizare lista zboruri</a>
+        </div>
+        <!--        <div class="col-md-6">
+                    <a class="btn btn-primary" role="button" th:href="@{'/participant/new'}">register</a>
+                </div>
+        -->
+    </div>
+</div>
+
+
+
+</body>
+</html>

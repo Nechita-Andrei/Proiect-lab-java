@@ -50,7 +50,6 @@ public class Cont {
     }
 
     @Column
-    @NonNull
     private Integer sumaDeBani;
 
     @Column(unique = true,length = 10)

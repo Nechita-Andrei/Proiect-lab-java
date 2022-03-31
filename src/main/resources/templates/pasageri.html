@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pasageri</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>Email</th>
+            <th>Telefon</th>
+
+        </tr>
+        </thead>
+        <tr th:each="pasager: ${pasageri}">
+            <td th:text="${pasager.id}"></td>
+            <td th:text="${pasager.nume}"></td>
+            <td th:text="${pasager.prenume}"></td>
+            <td th:text="${pasager.email}"></td>
+            <td th:text="${pasager.telefon}"></td>
+
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor'}">Vizualizare lista zboruri</a>
+        </div>
+        <!--        <div class="col-md-6">
+                    <a class="btn btn-primary" role="button" th:href="@{'/participant/new'}">register</a>
+                </div>
+        -->
+    </div>
+</div>
+
+
+
+</body>
+</html>

@@ -141,6 +141,10 @@ public class Zbor {
     @Column(nullable = false)
     private Date data_plecare;
 
+    public int getDelay() {
+        return delay;
+    }
+
     @Column(nullable = false)
     private Date data_sosire;
 

@@ -3,6 +3,7 @@ package proiect.repository;
 import proiect.domain.Client;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import proiect.domain.Cont;
 
 import java.util.Optional;
 

@@ -1,11 +1,13 @@
 package proiect.controller;
 
+import org.dom4j.rule.Mode;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.servlet.ModelAndView;
 import proiect.domain.*;
 import proiect.service.ClientException;
 import proiect.service.ZborException;
@@ -23,12 +25,11 @@ public class ZborController {
     private ZborService zborService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Zbor>> getZboruri(){
+    public ModelAndView getZboruri(){
+        ModelAndView modelAndView=new ModelAndView("zbor");
         Collection<Zbor> zboruri=(Collection<Zbor>) zborService.getAllZboruri();
-        if(zboruri.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(zboruri);
+        modelAndView.addObject("zboruri",zboruri);
+        return modelAndView;
     }
 
     @PostMapping(path = "/avion",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
