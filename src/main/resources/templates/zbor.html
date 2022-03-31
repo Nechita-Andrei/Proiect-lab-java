@@ -41,9 +41,22 @@
             <td><a href="#" th:href="@{'/bilet/pasageri/' + ${zbor.id}}">Lista pasageri</a></td>
         </tr>
     </table>
+    <div th:if="${zboruri.totalPages > 0}" class="pagination" >
+        <a th:if="${zboruri.number > 0}"
+           th:href="@{/zbor(page=${zboruri.number})}">Previous</a>
+        <span th:unless="${zboruri.number >0}">Previous</span>
+    </div>
+        <div th:if="${zboruri.totalPages > 0}" class="pagination"  style="float: right">
+            <a th:if="${zboruri.number < zboruri.totalPages -1}"
+               th:href="@{/zbor(page=${zboruri.number+2})}">Next</a>
+            <span th:unless="${zboruri.number <
+zboruri.totalPages -1}">Next</span>
+        </div>
+
 </div>
 
-<div class="container">
+
+<div class="container" style="margin-top: 50px">
     <div class="row">
         <div class="col-md-6">
             <a class="btn btn-primary" role="button" th:href="@{'/client'}">Vizualizare lista clienti</a>
@@ -54,6 +67,8 @@
         -->
     </div>
 </div>
+
+
 
 
 

@@ -94,18 +94,7 @@ public class BiletControllerTest {
     }
 
 
-    @Test
-    public void GetPasageriTest() throws Exception{
-        zbor.get().setId(3);
-        Set<Client>pasageri=new HashSet<>();
 
-        zbor.get().setPasageri(pasageri);
-        when(zborRepo.findById(zbor.get().getId())).thenReturn(zbor);
-       String endpoint="/bilet/pasageri/{zbor_id}";
-       mockMvc.perform(get(endpoint,zbor.get().getId())).andExpect(status().isNoContent());
-        pasageri.add(user_client.get());
-        mockMvc.perform(get(endpoint,zbor.get().getId())).andExpect(status().isOk());
-    }
     @Test
     public void GetDestinatieDataZborTest() throws Exception{
         when(destinatieRepo.findByLocalitate(destinatie.get().getLocalitate())).thenReturn(destinatie);
@@ -135,26 +124,6 @@ public class BiletControllerTest {
 
     }
 //
-    @Test
-    public void VerificaDiscountTest() throws Exception {
-        Set<Zbor> zboruri_client=new HashSet<>();
-        user_client.get().setZboruri(zboruri_client);
-        String endpoint="/bilet/client/{client_email}/verifica_discount";
-        when(clientRepo.findByEmail(user_client.get().getEmail())).thenReturn(user_client);
-        mockMvc.perform(get(endpoint,user_client.get().getEmail())).andExpect(status().isUnauthorized()).andExpect(jsonPath("$").value(ClientException.notEligibleForDiscount().getErrorCodeClient().toString()));;
-        zboruri_client.add(zbor.get());
-        zboruri_client.add(zbor2.get());
-        zboruri_client.add(zbor3.get());
-        zboruri_client.add(zbor4.get());
-        zboruri_client.add(zbor5.get());
-        zboruri_client.add(zbor6.get());
-        zboruri_client.add(zbor7.get());
-        zboruri_client.add(zbor8.get());
-        zboruri_client.add(zbor9.get());
-        zboruri_client.add(zbor10.get());
-        user_client.get().setZboruri(zboruri_client);
-        mockMvc.perform(get(endpoint,user_client.get().getEmail())).andExpect(status().isOk());
-    }
 
     @Test
     public void AddZborClientTest() throws Exception{

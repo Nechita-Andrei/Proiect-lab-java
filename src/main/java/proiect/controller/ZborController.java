@@ -2,6 +2,8 @@ package proiect.controller;
 
 import org.dom4j.rule.Mode;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -13,9 +15,11 @@ import proiect.service.ClientException;
 import proiect.service.ZborException;
 import proiect.service.ZborService;
 
+import java.awt.print.Pageable;
 import java.net.URI;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/zbor")
@@ -25,10 +29,13 @@ public class ZborController {
     private ZborService zborService;
 
     @GetMapping
-    public ModelAndView getZboruri(){
+    public ModelAndView getZboruri(@RequestParam("page") Optional<Integer> page){
         ModelAndView modelAndView=new ModelAndView("zbor");
-        Collection<Zbor> zboruri=(Collection<Zbor>) zborService.getAllZboruri();
-        modelAndView.addObject("zboruri",zboruri);
+        int currentPage=page.orElse(1);
+        int pageSize = 5;
+
+        Page<Zbor> zborPage=zborService.findPaginated(PageRequest.of(currentPage-1,pageSize));
+        modelAndView.addObject("zboruri",zborPage);
         return modelAndView;
     }
 

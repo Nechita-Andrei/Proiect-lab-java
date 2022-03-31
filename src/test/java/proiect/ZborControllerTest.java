@@ -76,14 +76,6 @@ public class ZborControllerTest {
 
     }
 
-    @Test
-    public void testGetZboruri()throws Exception{
-        when(zborRepo.findAll()).thenReturn(Collections.emptyList());
-        String endpoint="/zbor";
-        mockMvc.perform(get(endpoint)).andExpect(status().isNoContent());
-        when(zborRepo.findAll()).thenReturn(zboruri);
-        mockMvc.perform(get(endpoint)).andExpect(status().isOk());
-    }
 
     @Test
     public void testAddAvion()throws Exception{

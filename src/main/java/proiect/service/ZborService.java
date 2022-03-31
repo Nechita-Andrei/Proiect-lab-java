@@ -1,16 +1,24 @@
 package proiect.service;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import proiect.domain.*;
 import proiect.repository.*;
 
 import java.sql.Date;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class ZborService {
 
     @Autowired
@@ -41,6 +49,25 @@ public class ZborService {
         return client.getParola().equals(parola);
 
     }
+    public Page<Zbor> findPaginated(Pageable pageable) {
+        log.info("se apeleaza paginarea pentru pagina: "+pageable.getPageNumber());
+        List<Zbor> movies = (List<Zbor>) zborRepo.findAll();
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Zbor> list;
+        if (movies.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, movies.size());
+            list = movies.subList(startItem, toIndex);
+        }
+        Page<Zbor> moviePage
+                = new PageImpl<Zbor>(list, PageRequest.of(currentPage,
+                pageSize), movies.size());
+        return moviePage;
+    }
+
 
     public Avion addAvion(String model, int numar_locuri, int an_constructie, String email, String parola) throws DataIntegrityViolationException {
         Optional<Client>client= clientRepo.findByEmail(email);
