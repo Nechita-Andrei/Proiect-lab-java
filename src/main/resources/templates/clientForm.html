@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Info</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<body>
+<form th:object="${client}"  th:action="@{/client}" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="cont.numarCard" name="cont.numarCard" th:value="${cont.numarCard}"/>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h1 class="panel-title">Client INFO</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Nume:</label>
+                        <input type="text" class="form-control" th:field="*{nume}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Prenume:</label>
+                        <input type="text" class="form-control" th:field="*{prenume}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Varsta:</label>
+                        <input type="number" class="form-control" th:field="*{varsta}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Telefon:</label>
+                        <input type="text" class="form-control" th:field="*{telefon}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Email:</label>
+                        <input type="text" class="form-control" th:field="*{email}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Parola:</label>
+                        <input type="password" class="form-control" th:field="*{parola}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="role">Rol: </label>
+                        <select id="role" name="role" th:field="*{rol}">
+                            <option
+
+                                    th:each="role:${T(proiect.domain.Client.Rol).values()}"
+                                    th:value="${role}" th:text="${role.name()}">
+
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-3 form-group">
+                        <label>Banca:</label>
+                        <input type="text" readonly th:value="${cont.banca}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Numar card:</label>
+                        <input type="text" readonly th:value="${cont.numarCard}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Suma de bani:</label>
+                        <input type="number" readonly th:value="${cont.sumaDeBani}"/>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-7 ml-md-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -16,6 +16,19 @@ public class Cont {
     private int id;
 
 
+
+    public void setSumaDeBani(Integer sumaDeBani) {
+        this.sumaDeBani = sumaDeBani;
+    }
+
+    public void setBanca(String banca) {
+        this.banca = banca;
+    }
+
+    public void setNumarCard(String numarCard) {
+        this.numarCard = numarCard;
+    }
+
     @Column
     private String banca;
 
@@ -23,9 +36,6 @@ public class Cont {
         this.id = id;
     }
 
-    public void setSumaDeBani(int sumaDeBani) {
-        this.sumaDeBani = sumaDeBani;
-    }
 
     public int getId() {
         return id;
@@ -35,7 +45,8 @@ public class Cont {
         return banca;
     }
 
-    public int getSumaDeBani() {
+    public Integer getSumaDeBani() {
+
         return sumaDeBani;
     }
 
@@ -43,7 +54,7 @@ public class Cont {
         return numarCard;
     }
 
-    public Cont(String banca, int sumaDeBani, String numarCard) {
+    public Cont(String banca, Integer sumaDeBani, String numarCard) {
         this.banca = banca;
         this.sumaDeBani = sumaDeBani;
         this.numarCard = numarCard;

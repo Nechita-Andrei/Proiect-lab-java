@@ -21,8 +21,16 @@ public class ClientService {
     public ContRepo contRepo;
 
     //adaugare cont
-    public Cont addCont(String banca, int suma, String numar_card){
-        return contRepo.save(new Cont(banca,suma, numar_card));
+    public Cont addCont(Cont cont){
+        return contRepo.save(cont);
+    }
+
+    public Cont findContById(int id){
+        Optional<Cont>cont=contRepo.findById(id);
+        if(!cont.isPresent()){
+            throw ClientException.accountNotFound();
+        }
+        return cont.get();
     }
     public Client getClientById(int id){
         Optional<Client>client=clientRepo.findById(id);

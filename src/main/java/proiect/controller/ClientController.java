@@ -1,6 +1,8 @@
 package proiect.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import proiect.domain.Client;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/client")
+@Slf4j
 public class ClientController {
 
     @Autowired
@@ -51,13 +54,42 @@ public class ClientController {
         return modelAndView;
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Void> addClient(String nume, String prenume, String varsta, String email, String telefon, String parola, String numar_card, String rol){
-            Client client = clientService.addClient(nume, prenume, Integer.parseInt(varsta), email,
-                   telefon,parola,numar_card , rol);
-//            URI uri = WebMvcLinkBuilder.linkTo(ClientController.class).slash("clienti").slash(client.getId()).toUri();
-//            return ResponseEntity.created(uri).build();
-            return ResponseEntity.ok().build();
+
+    @PostMapping("/cont")
+    public ModelAndView addCont(@ModelAttribute Cont cont){
+        clientService.addCont(cont);
+        return new ModelAndView("redirect:/client");
+    }
+
+    @RequestMapping("/cont/new")
+    public ModelAndView newCont(){
+        ModelAndView modelAndView=new ModelAndView("contForm");
+        modelAndView.addObject("cont",new Cont());
+        return modelAndView;
+    }
+
+    @RequestMapping("/new/{id_cont}")
+    public ModelAndView newClient(@PathVariable("id_cont") int cont_id){
+        ModelAndView modelAndView=new ModelAndView("clientForm");
+        modelAndView.addObject("client",new Client());
+        Cont cont= clientService.findContById(cont_id);
+        modelAndView.addObject("cont",cont);
+        return modelAndView;
+    }
+
+    @PostMapping
+    public ModelAndView addClient(@RequestParam("nume") String nume, @RequestParam("prenume") String prenume,@RequestParam("varsta") int varsta,
+                                  @RequestParam("email") String email,@RequestParam("telefon")  String telefon,@RequestParam("parola") String parola,@RequestParam("rol") String rol,@RequestParam("cont.numarCard") String numar_card){
+        log.info("numele: "+nume);
+        log.info("prenume: "+prenume);
+        log.info("varsta: "+varsta);
+        log.info("email: "+email);
+        log.info("telefon: "+telefon);
+        log.info("parola: "+parola);
+        log.info("numar_card: "+numar_card);
+        log.info("rol: "+rol);
+        clientService.addClient(nume,prenume,varsta,email,telefon,parola,numar_card,rol);
+        return new ModelAndView("redirect:/client");
     }
 
 }
