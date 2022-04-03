@@ -8,7 +8,8 @@ public class ClientException extends RuntimeException{
         NOT_ENOUGH_MONEY,
         ACCOUNT_NOT_FOUND,
         DOES_NOT_HAVE_PERMISSION,
-        NOT_ELIGIBLE_FOR_DISCOUNT
+        NOT_ELIGIBLE_FOR_DISCOUNT,
+        ADDRESS_NOT_FOUND
     }
 
 
@@ -35,5 +36,6 @@ public class ClientException extends RuntimeException{
 
     public static ClientException noPermission(){ return new ClientException(ErrorCodeClient.DOES_NOT_HAVE_PERMISSION);}
     public static ClientException notEligibleForDiscount(){ return new ClientException(ErrorCodeClient.NOT_ELIGIBLE_FOR_DISCOUNT);}
+    public static ClientException adressNotFound(){ return new ClientException(ErrorCodeClient.ADDRESS_NOT_FOUND);}
 
 }

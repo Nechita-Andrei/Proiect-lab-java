@@ -1,11 +1,13 @@
 package proiect.service;
 
 
+import proiect.domain.Adresa;
 import proiect.domain.Client;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.domain.Cont;
+import proiect.repository.AdresaRepo;
 import proiect.repository.ClientRepo;
 import proiect.repository.ContRepo;
 
@@ -20,9 +22,23 @@ public class ClientService {
     @Autowired
     public ContRepo contRepo;
 
+    @Autowired
+    public AdresaRepo adresaRepo;
+
     //adaugare cont
     public Cont addCont(Cont cont){
         return contRepo.save(cont);
+    }
+    public Adresa addAdresa(Adresa adresa){
+        return adresaRepo.save(adresa);
+    }
+
+    public Adresa findAdresaById(Integer id){
+        Optional<Adresa> adresa=adresaRepo.findById(id);
+        if(!adresa.isPresent()){
+            throw ClientException.adressNotFound();
+        }
+        return adresa.get();
     }
 
     public Cont findContById(int id){
@@ -55,11 +71,12 @@ public class ClientService {
     }
 
     //adauga un client cu un numar de card aferent contului
-    public Client addClient(String nume, String prenume, int varsta, String email, String telefon, String parola, String numar_card, String rol) throws DataIntegrityViolationException {
+    public Client addClient(String nume, String prenume, int varsta, String email, String telefon, String parola, String numar_card, String rol, Integer adresa_id){
         Optional <Cont> cont=contRepo.findByNumarCard(numar_card);
         if(!cont.isPresent()){
             throw ClientException.accountNotFound();
         }
-        return clientRepo.save(new Client(nume,prenume,varsta,email,telefon,parola,cont.get(),Client.Rol.valueOf(rol)));
+        Adresa adresa=this.findAdresaById(adresa_id);
+        return clientRepo.save(new Client(nume,prenume,varsta,email,telefon,parola,cont.get(),Client.Rol.valueOf(rol),adresa));
     }
 }

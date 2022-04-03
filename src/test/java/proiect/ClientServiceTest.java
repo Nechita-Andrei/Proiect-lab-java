@@ -32,7 +32,7 @@ public class ClientServiceTest {
     @Test
     public void testAddClient(){
         ClientException exception=assertThrows(ClientException.class,()->clientService.addClient("test1",
-                "testalaus",28,"test_gresit@yahoo.com","021638726","testt","12312","CLIENT"));
+                "testalaus",28,"test_gresit@yahoo.com","021638726","testt","12312","CLIENT",3));
         assertEquals(ClientException.ErrorCodeClient.ACCOUNT_NOT_FOUND,exception.getErrorCodeClient());
         log.info("test1client...");
     }

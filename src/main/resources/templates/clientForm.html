@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <body>
-<form th:object="${client}"  th:action="@{/client}" method="post" enctype="multipart/form-data">
+<form th:object="${client}" th:action="@{/client}" method="post" enctype="multipart/form-data">
     <input type="hidden" id="cont.numarCard" name="cont.numarCard" th:value="${cont.numarCard}"/>
     <div class="container">
         <div class="panel panel-primary">
@@ -53,32 +53,66 @@
                         </select>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h3 class="card-title">Cont INFO</h3>
+            </div>
+            <div class="panel-body">
                 <div class="row">
-
                     <div class="col-md-3 form-group">
                         <label>Banca:</label>
-                        <input type="text" readonly th:value="${cont.banca}"/>
+                        <input type="text" readonly class="form-control" th:value="${cont.banca}"/>
                     </div>
                     <div class="col-md-3 form-group">
                         <label>Numar card:</label>
-                        <input type="text" readonly th:value="${cont.numarCard}"/>
+                        <input type="text" readonly class="form-control" th:value="${cont.numarCard}"/>
                     </div>
                     <div class="col-md-3 form-group">
                         <label>Suma de bani:</label>
-                        <input type="number" readonly th:value="${cont.sumaDeBani}"/>
+                        <input type="number" readonly class="form-control" th:value="${cont.sumaDeBani}"/>
                     </div>
                 </div>
-
-
-
-                <div class="row">
-                    <div class="col-md-7 ml-md-auto">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-
             </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h3 class="card-title">Adresa INFO</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <input type="hidden" id="adresa_id" name="adresa_id" th:value="${adresa.id}">
+                    <div class="col-md-3 form-group">
+                        <label>Judet:</label>
+                        <input type="text" readonly  class="form-control" th:value="${adresa.judet}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Localitate:</label>
+                        <input type="text" readonly  class="form-control" th:value="${adresa.localitate}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Strada:</label>
+                        <input type="text" readonly  class="form-control" th:value="${adresa.strada}"/>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-7 ml-md-auto">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+
     </div>
 </form>
 </body>

@@ -52,7 +52,8 @@ public class ZborControllerTest {
     private ContRepo contRepo;
     @MockBean
     private PilotRepo pilotRepo;
-
+    private static Optional<Adresa>adresa1;
+    private static Optional<Adresa>adresa2;
     private static List<Zbor> zboruri;
     private static Optional<Avion> avion;
     private static Optional<Client> user_client;
@@ -64,9 +65,11 @@ public class ZborControllerTest {
 
     @BeforeAll
     public static void setup(){
+        adresa1=Optional.of(new Adresa("Bucuresti","Bucuresti","1 mai"));
+        adresa2=Optional.of(new Adresa("Bucuresti","Bucuresti","2 mai"));
         avion= Optional.of(new Avion("testAvion",200,2001));
-        user_admin=Optional.of(new Client("andrei","andrei2",20, "admin@yahoo.com","0280382","admin",null, Client.Rol.ADMIN));
-        user_client=Optional.of(new Client("andrei","andrei3",30, "client@yahoo.com","028038212","client",null, Client.Rol.CLIENT));
+        user_admin=Optional.of(new Client("andrei","andrei2",20, "admin@yahoo.com","0280382","admin",null, Client.Rol.ADMIN,adresa1.get()));
+        user_client=Optional.of(new Client("andrei","andrei3",30, "client@yahoo.com","028038212","client",null, Client.Rol.CLIENT,adresa2.get()));
         destinatie=Optional.of(new Destinatie("Ungaria","Budapesta", Destinatie.Zona_covid.GALBEN));
         pilot=Optional.of(new Pilot("pilot","test",33,4000, Pilot.Experienta.AVANSAT));
         aeroport_plecare=Optional.of(new Aeroport("henri","Bucuresti",2000));

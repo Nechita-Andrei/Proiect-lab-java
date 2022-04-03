@@ -42,7 +42,15 @@ public class Client {
     @Column
     private int varsta;
 
-    public Client(String nume, String prenume, int varsta, String email,  String telefon, String parola,Cont cont, Rol rol) {
+    public Adresa getAdresa() {
+        return adresa;
+    }
+
+    public void setAdresa(Adresa adresa) {
+        this.adresa = adresa;
+    }
+
+    public Client(String nume, String prenume, int varsta, String email, String telefon, String parola, Cont cont, Rol rol, Adresa adresa) {
         this.nume = nume;
         this.prenume = prenume;
         this.varsta = varsta;
@@ -52,6 +60,7 @@ public class Client {
         this.parola = parola;
         this.discount=false;
         this.rol=rol;
+        this.adresa=adresa;
     }
 
     @Column(nullable = false,unique = true)
@@ -69,6 +78,9 @@ public class Client {
 
     @Column
     private boolean discount;
+
+    @ManyToOne
+    private Adresa adresa;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import proiect.domain.Adresa;
 import proiect.domain.Client;
 import proiect.domain.Cont;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -56,30 +57,47 @@ public class ClientController {
 
 
     @PostMapping("/cont")
-    public ModelAndView addCont(@ModelAttribute Cont cont){
+    public ModelAndView addCont(@ModelAttribute Cont cont, @RequestParam("adresa") Integer adresa_id){
         clientService.addCont(cont);
-        return new ModelAndView("redirect:/client");
+        return new ModelAndView("redirect:/client/new/"+adresa_id+"/"+cont.getId());
     }
 
-    @RequestMapping("/cont/new")
-    public ModelAndView newCont(){
-        ModelAndView modelAndView=new ModelAndView("contForm");
-        modelAndView.addObject("cont",new Cont());
+    @PostMapping("/adresa")
+    public ModelAndView addAdresa(@ModelAttribute Adresa adresa){
+        clientService.addAdresa(adresa);
+        return new ModelAndView("redirect:/client/cont/new/"+adresa.getId());
+    }
+    @RequestMapping("/adresa/new")
+      public ModelAndView newAdresa() {
+        ModelAndView modelAndView = new ModelAndView("adresaForm");
+        modelAndView.addObject("adresa",new Adresa());
         return modelAndView;
     }
 
-    @RequestMapping("/new/{id_cont}")
-    public ModelAndView newClient(@PathVariable("id_cont") int cont_id){
+
+    @RequestMapping("/cont/new/{adresa_id}")
+    public ModelAndView newCont(@PathVariable("adresa_id") Integer adresa_id){
+        ModelAndView modelAndView=new ModelAndView("contForm");
+        modelAndView.addObject("cont",new Cont());
+        modelAndView.addObject("adresa",adresa_id);
+        return modelAndView;
+    }
+
+    @RequestMapping("/new/{id_adresa}/{id_cont}")
+    public ModelAndView newClient(@PathVariable("id_cont") int cont_id, @PathVariable("id_adresa") Integer adresa_id){
         ModelAndView modelAndView=new ModelAndView("clientForm");
         modelAndView.addObject("client",new Client());
         Cont cont= clientService.findContById(cont_id);
         modelAndView.addObject("cont",cont);
+        Adresa adresa=clientService.findAdresaById(adresa_id);
+        modelAndView.addObject("adresa",adresa);
         return modelAndView;
     }
 
     @PostMapping
     public ModelAndView addClient(@RequestParam("nume") String nume, @RequestParam("prenume") String prenume,@RequestParam("varsta") int varsta,
-                                  @RequestParam("email") String email,@RequestParam("telefon")  String telefon,@RequestParam("parola") String parola,@RequestParam("rol") String rol,@RequestParam("cont.numarCard") String numar_card){
+                                  @RequestParam("email") String email,@RequestParam("telefon")  String telefon,@RequestParam("parola") String parola,
+                                  @RequestParam("rol") String rol,@RequestParam("cont.numarCard") String numar_card, @RequestParam("adresa_id") Integer adresa_id){
         log.info("numele: "+nume);
         log.info("prenume: "+prenume);
         log.info("varsta: "+varsta);
@@ -88,7 +106,7 @@ public class ClientController {
         log.info("parola: "+parola);
         log.info("numar_card: "+numar_card);
         log.info("rol: "+rol);
-        clientService.addClient(nume,prenume,varsta,email,telefon,parola,numar_card,rol);
+        clientService.addClient(nume,prenume,varsta,email,telefon,parola,numar_card,rol,adresa_id);
         return new ModelAndView("redirect:/client");
     }
 
