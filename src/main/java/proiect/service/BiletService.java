@@ -37,6 +37,23 @@ public class BiletService {
         return zbor.get().getPasageri();
     }
 
+    public List<Zbor> getZboruriPosibile(String email){
+        Optional<Client> client=clientRepo.findByEmail(email);
+        List<Zbor>zboruriposibile=new ArrayList<>();
+        if(!client.isPresent()){
+            throw ClientException.clientNotFound();
+        }
+        Set<Zbor>zboruriClient=this.getZboruriClient(client.get().getEmail());
+        List<Zbor>toateZborurile= (List<Zbor>) zborRepo.findAll();
+        for(Zbor zbor:toateZborurile){
+            if(!zboruriClient.contains(zbor)){
+                zboruriposibile.add(zbor);
+            }
+        }
+        return zboruriposibile;
+
+    }
+
     //intoarce lista zborurilor filtrate dupa ziua plecarii si a localitatii
     public List<Zbor> getZboruriDataDestinatie(Date date, String localitate){
         Optional<Destinatie> destinatie=destinatieRepo.findByLocalitate(localitate);

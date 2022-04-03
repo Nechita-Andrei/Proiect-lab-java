@@ -43,15 +43,16 @@ public class ClientController {
         modelAndView.addObject("clienti",clients);
         modelAndView.addObject("some",some);
         modelAndView.addObject("color",color);
-
+        log.info("se afiseaza toti clientii...");
         return modelAndView;
     }
 
     @GetMapping("/{client_id}")
-    public ModelAndView getClients(@PathVariable("client_id") int id_client){
+    public ModelAndView getContClient(@PathVariable("client_id") int id_client){
         Client client=clientService.getClientById(id_client);
         ModelAndView modelAndView=new ModelAndView("cont_client");
         modelAndView.addObject("client",client);
+        log.info("se afiseaza detaliile contului pentru clientul "+client.getNume()+' '+client.getPrenume());
         return modelAndView;
     }
 
@@ -59,12 +60,14 @@ public class ClientController {
     @PostMapping("/cont")
     public ModelAndView addCont(@ModelAttribute Cont cont, @RequestParam("adresa") Integer adresa_id){
         clientService.addCont(cont);
+        log.info("s-a adaugat cu succes contul");
         return new ModelAndView("redirect:/client/new/"+adresa_id+"/"+cont.getId());
     }
 
     @PostMapping("/adresa")
     public ModelAndView addAdresa(@ModelAttribute Adresa adresa){
         clientService.addAdresa(adresa);
+        log.info("s-a adaugat cu succes adresa");
         return new ModelAndView("redirect:/client/cont/new/"+adresa.getId());
     }
     @RequestMapping("/adresa/new")
@@ -106,6 +109,7 @@ public class ClientController {
         log.info("parola: "+parola);
         log.info("numar_card: "+numar_card);
         log.info("rol: "+rol);
+        log.info("adresa: "+adresa_id);
         clientService.addClient(nume,prenume,varsta,email,telefon,parola,numar_card,rol,adresa_id);
         return new ModelAndView("redirect:/client");
     }

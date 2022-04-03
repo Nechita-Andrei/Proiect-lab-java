@@ -1,6 +1,8 @@
 package proiect.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import proiect.domain.Client;
@@ -19,6 +21,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/bilet")
+@Slf4j
 public class BiletController {
 
     @Autowired
@@ -26,17 +29,13 @@ public class BiletController {
 
 
     @GetMapping(path = "/zboruri/{client_email}")
-    public ResponseEntity<Set<Zbor>> getZboruriClient(@PathVariable("client_email") String email){
-        try {
+    public ModelAndView getZboruriClient(@PathVariable("client_email") String email){
             Set<Zbor> zboruri = biletService.getZboruriClient(email);
-            if(zboruri.isEmpty()){
-                return ResponseEntity.noContent().build();
-            }
-            return ResponseEntity.ok(zboruri);
-        }
-        catch (ClientException clientException){
-            return ResponseEntity.notFound().build();
-        }
+            ModelAndView modelAndView=new ModelAndView("zboruriClient");
+            modelAndView.addObject("zboruri",zboruri);
+            log.info("s-au afisat toate zborurile pentru clientul: "+email);
+            return modelAndView;
+
     }
 
     @GetMapping(path = "/pasageri/{zbor_id}")
@@ -44,17 +43,29 @@ public class BiletController {
             Set<Client> pasageri= biletService.getPasageri(zborId);
             ModelAndView modelAndView=new ModelAndView("pasageri");
             modelAndView.addObject("pasageri",pasageri);
+            log.info("s-au afisat pasagerii pentru zborul: "+zborId);
             return modelAndView;
     }
 
-    @PostMapping(path = "/client/{client_email}/zbor/{zbor_id}")
-    public ResponseEntity<Void> cumparaBilet(@PathVariable("client_email") String email, @PathVariable("zbor_id") Integer zborId){
-        try {
-            biletService.cumparaBilet(zborId,email);
-            return ResponseEntity.ok().build();
-        }catch (ZborException clientException){
-            return ResponseEntity.notFound().build();
-        }
+    @RequestMapping(path = "/client/{client_email}/zbor/{zbor_id}")
+    public ModelAndView cumparaBilet(@PathVariable("client_email") String email, @PathVariable("zbor_id") Integer zborId){
+        biletService.cumparaBilet(zborId,email);
+        log.info("s-a cumparat cu succes un bilet la zborul: "+zborId+" de catre "+email);
+        return new ModelAndView("redirect:/bilet/arataBilete/client/"+email);
+
+
+
+
+    }
+
+    @RequestMapping(path = "/arataBilete/client/{client_email}")
+    public ModelAndView arataBiletePosibileClient(@PathVariable("client_email") String email){
+        List<Zbor>zboruri=biletService.getZboruriPosibile(email);
+        ModelAndView modelAndView=new ModelAndView("zboruriPosibile");
+        modelAndView.addObject("zboruri",zboruri);
+        modelAndView.addObject("client",email);
+        log.info("s-au afisat zborurile a caror bilete pot fi achizitionate de catre: "+email);
+        return modelAndView;
     }
 
     @GetMapping(path = "/filtrare/{plecare}/{localitate}")
@@ -77,6 +88,7 @@ public class BiletController {
                 redirectAttributes.addFlashAttribute("color","red");
                 return new ModelAndView("redirect:/client");
             }
+            log.info("s-a verificat discount-ul pentru "+email);
         redirectAttributes.addFlashAttribute("mesaj","User-ul este eligibil pentru discount si a fost salvat corespunzator!");
         redirectAttributes.addFlashAttribute("color","green");
         return new ModelAndView("redirect:/client");

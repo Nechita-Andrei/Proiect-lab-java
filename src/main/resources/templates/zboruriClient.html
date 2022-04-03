@@ -23,7 +23,6 @@
             <th>Avion</th>
             <th>Pret</th>
             <th>Intarziere</th>
-            <th>Pasageri</th>
 
         </tr>
         </thead>
@@ -38,20 +37,8 @@
             <td th:text="${zbor.avion.model}"></td>
             <td th:text="${zbor.pret}"></td>
             <td th:text="${zbor.delay+' minute'}"></td>
-            <td><a href="#" th:href="@{'/bilet/pasageri/' + ${zbor.id}}">Lista pasageri</a></td>
         </tr>
     </table>
-    <div th:if="${zboruri.totalPages > 0}" class="pagination" >
-        <a th:if="${zboruri.number > 0}"
-           th:href="@{/zbor(page=${zboruri.number})}">Previous</a>
-        <span th:unless="${zboruri.number >0}">Previous</span>
-    </div>
-        <div th:if="${zboruri.totalPages > 0}" class="pagination"  style="float: right">
-            <a th:if="${zboruri.number < zboruri.totalPages -1}"
-               th:href="@{/zbor(page=${zboruri.number+2})}">Next</a>
-            <span th:unless="${zboruri.number <
-zboruri.totalPages -1}">Next</span>
-        </div>
 
 </div>
 
@@ -60,7 +47,6 @@ zboruri.totalPages -1}">Next</span>
     <div class="row">
         <div class="col-md-6">
             <a class="btn btn-primary" role="button" th:href="@{'/client'}">Vizualizare lista clienti</a>
-<!--            <a class="btn btn-primary" role="button" th:href="@{'/client/cont/new'}">Adauga cont</a>-->
         </div>
         <!--        <div class="col-md-6">
                     <a class="btn btn-primary" role="button" th:href="@{'/participant/new'}">register</a>

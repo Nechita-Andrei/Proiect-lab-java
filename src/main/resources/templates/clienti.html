@@ -21,6 +21,7 @@
             <th>Telefon</th>
             <th>Eligibil discount</th>
             <th>Cont</th>
+            <th>Bilete</th>
             <th>Actiuni</th>
 
         </tr>
@@ -33,7 +34,10 @@
             <td th:text="${client.telefon}"></td>
             <td th:text="${client.discount}"></td>
             <td><a href="#" th:href="@{'/client/' + ${client.id}}">Detalii cont</a></td>
-            <td><a href="#" th:href="@{'/bilet/client/' + ${client.email}+'/verifica_discount'}">Verifica discount</a></td>
+            <td><a href="#" th:href="@{'/bilet/zboruri/' + ${client.email}}">Vizualizare bilete</a></td>
+            <td><a href="#" th:href="@{'/bilet/client/' + ${client.email}+'/verifica_discount'}">Verifica discount</a>
+                <a href="#" th:href="@{'/bilet/arataBilete/client/'+${client.email}}">Cumpara un bilet</a>
+            </td>
 
         </tr>
     </table>
@@ -45,7 +49,7 @@
             <a class="btn btn-primary" role="button" th:href="@{'/zbor'}">Vizualizare lista zboruri</a>
         </div>
               <div class="col-md-6">
-                    <a class="btn btn-primary" role="button" th:href="@{'/client/adresa/new'}">register</a>
+                    <a class="btn btn-primary" role="button" th:href="@{'/client/adresa/new'}">Adauga client nou</a>
                 </div>
 
     </div>

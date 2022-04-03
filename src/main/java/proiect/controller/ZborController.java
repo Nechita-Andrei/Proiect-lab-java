@@ -1,5 +1,6 @@
 package proiect.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.rule.Mode;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/zbor")
+@Slf4j
 public class ZborController {
 
     @Autowired
@@ -89,7 +91,7 @@ public class ZborController {
 //            URI uri= WebMvcLinkBuilder.linkTo(ZborController.class).slash("zboruri").slash(zbor.getId()).toUri();
 //            return ResponseEntity.created(uri).build();
             return ResponseEntity.ok().build();
-        }catch (ZborException| DataIntegrityViolationException zborException){
+        }catch (ZborException zborException){
             return ResponseEntity.notFound().build();
         }
     }
