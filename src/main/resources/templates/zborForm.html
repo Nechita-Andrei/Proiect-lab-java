@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avion Info</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+<body>
+<form th:action="@{/zbor}" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h1 class="panel-title">Zbor INFO</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Aeroport plecare:</label>
+                        <select id="aeroport_plecare" name="aeroport_plecare">
+                            <option
+
+                                    th:each="aeroport: ${aeroporturi}"
+                                    th:value="${aeroport.id}" th:text="${aeroport.denumire+' '+aeroport.locatie}">
+
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Aeroport sosire:</label>
+                        <select id="aeroport_sosire" name="aeroport_sosire">
+                            <option
+
+                                    th:each="aeroport: ${aeroporturi}"
+                                    th:value="${aeroport.id}" th:text="${aeroport.denumire+' '+aeroport.locatie}">
+
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Pilot:</label>
+                        <select id="pilot" name="pilot">
+                            <option
+
+                                    th:each="pilot: ${piloti}"
+                                    th:value="${pilot.id}" th:text="${pilot.nume+' '+pilot.prenume}">
+
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                    <label>Avion:</label>
+                    <select id="avion" name="avion">
+                        <option
+
+                                th:each="avion: ${avioane}"
+                                th:value="${avion.id}" th:text="${avion.model+' '+avion.an_constructie}">
+
+                        </option>
+                    </select>
+                </div>
+                    <div class="col-md-3 form-group">
+                    <label>Destinatie:</label>
+                    <select id="destinatie" name="destinatie">
+                        <option
+
+                                th:each="destinatie: ${destinatii}"
+                                th:value="${destinatie.id}" th:text="${destinatie.tara+' '+destinatie.localitate+' '+destinatie.zona_covid}">
+
+                        </option>
+                    </select>
+                </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Data plecarii:</label>
+                        <input placeholder="Selecteaza data de plecare" type="text" id="plecare" name="plecare" class="form-control datepicker">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Data sosirii:</label>
+                        <input placeholder="Selecteaza data de sosire" type="text" id="sosire" name="sosire" class="form-control datepicker2">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Pret:</label>
+                        <input type="text" id="pret" name="pret" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Username:</label>
+                        <input type="text" class="form-control" id="user.name" name="user.name">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Parola:</label>
+                        <input type="password" class="form-control" id="user.parola" name="user.parola">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-7 ml-md-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
+
+<script>
+    $(".datepicker").datepicker({
+        dateFormat:'yy-mm-dd',
+    });
+    $(".datepicker2").datepicker({
+        dateFormat:'yy-mm-dd',
+    });
+</script>

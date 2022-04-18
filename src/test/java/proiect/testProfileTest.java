@@ -32,7 +32,7 @@ public class testProfileTest {
     @Test
     public void testFindDestinatie(){
         Destinatie destinatie=destinatieRepo.findByLocalitate("Bucuresti").get();
-        assertEquals(destinatie.getZona_covid(), Destinatie.Zona_covid.VERDE);
+        assertEquals(destinatie.getZona_covid(), Destinatie.ZonaCovid.VERDE);
     }
 
     @Test

@@ -41,15 +41,15 @@ public class Destinatie {
         this.localitate = localitate;
     }
 
-    public Zona_covid getZona_covid() {
+    public ZonaCovid getZona_covid() {
         return zona_covid;
     }
 
-    public void setZona_covid(Zona_covid zona_covid) {
+    public void setZona_covid(ZonaCovid zona_covid) {
         this.zona_covid = zona_covid;
     }
 
-    public Destinatie( String tara, String localitate, Zona_covid zona_covid) {
+    public Destinatie( String tara, String localitate, ZonaCovid zona_covid) {
         this.tara = tara;
         this.localitate = localitate;
         this.zona_covid = zona_covid;
@@ -60,11 +60,11 @@ public class Destinatie {
 
     @Column(name = "zona_covid",nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private Zona_covid zona_covid;
+    private ZonaCovid zona_covid;
 
 
 
-    public enum Zona_covid{
+    public enum ZonaCovid {
         ROSU,
         GALBEN,
         VERDE

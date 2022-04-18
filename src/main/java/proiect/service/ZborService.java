@@ -43,6 +43,20 @@ public class ZborService {
         return zborRepo.findAll();
     }
 
+    public Iterable<Aeroport> getAllAeroporturi(){
+        return aeroportRepo.findAll();
+    }
+    public Iterable<Destinatie> getAllDestinatii(){
+        return destinatieRepo.findAll();
+    }
+    public Iterable<Avion> getAllAvioane(){
+        return avionRepo.findAll();
+    }
+    public Iterable<Pilot> getAllPiloti(){
+        return pilotRepo.findAll();
+    }
+
+
     //functie care verifica credentialele date de user
     public boolean logare(Client client, String parola){
 
@@ -51,57 +65,58 @@ public class ZborService {
     }
     public Page<Zbor> findPaginated(Pageable pageable) {
         log.info("se apeleaza paginarea pentru pagina: "+pageable.getPageNumber());
-        List<Zbor> movies = (List<Zbor>) zborRepo.findAll();
+        List<Zbor> zboruri = (List<Zbor>) zborRepo.findAll();
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
         List<Zbor> list;
-        if (movies.size() < startItem) {
+        if (zboruri.size() < startItem) {
             list = Collections.emptyList();
         } else {
-            int toIndex = Math.min(startItem + pageSize, movies.size());
-            list = movies.subList(startItem, toIndex);
+            int toIndex = Math.min(startItem + pageSize, zboruri.size());
+            list = zboruri.subList(startItem, toIndex);
         }
-        Page<Zbor> moviePage
+        Page<Zbor> zborPage
                 = new PageImpl<Zbor>(list, PageRequest.of(currentPage,
-                pageSize), movies.size());
-        return moviePage;
+                pageSize), zboruri.size());
+        return zborPage;
     }
 
 
-    public Avion addAvion(String model, int numar_locuri, int an_constructie, String email, String parola) throws DataIntegrityViolationException {
+
+    public Avion addAvion(Avion avion, String email, String parola) throws DataIntegrityViolationException {
         Optional<Client>client= clientRepo.findByEmail(email);
         if(!client.isPresent()){
             throw ClientException.clientNotFound();
         }
-        if(client.get().getRol()!= Client.Rol.ADMIN && logare(client.get(),parola)){
+        if(client.get().getRol()!= Client.Rol.ADMIN || !logare(client.get(),parola)){
             throw ClientException.noPermission();
         }
-        return avionRepo.save(new Avion(model,numar_locuri,an_constructie));
+        return avionRepo.save(avion);
 
     }
 
-    public Pilot addPilot(String nume, String prenume, int vartsa, double salariu, String experienta, String email, String parola) throws DataIntegrityViolationException{
+    public Pilot addPilot(Pilot pilot, String email, String parola) throws DataIntegrityViolationException{
         Optional<Client>client= clientRepo.findByEmail(email);
         if(!client.isPresent()){
             throw ClientException.clientNotFound();
         }
-        if(client.get().getRol()!= Client.Rol.ADMIN && logare(client.get(),parola)){
+        if(client.get().getRol()!= Client.Rol.ADMIN || !logare(client.get(),parola)){
             throw ClientException.noPermission();
         }
-        return pilotRepo.save(new Pilot(nume,prenume,vartsa,salariu, Pilot.Experienta.valueOf(experienta)));
+        return pilotRepo.save(pilot);
 
     }
 
-    public Destinatie addDestinatie(String tara, String localitate, String zona_covid,String email, String parola)throws DataIntegrityViolationException{
+    public Destinatie addDestinatie(Destinatie destinatie,String email, String parola)throws DataIntegrityViolationException{
         Optional<Client>client= clientRepo.findByEmail(email);
         if(!client.isPresent()){
             throw ClientException.clientNotFound();
         }
-        if(client.get().getRol()!= Client.Rol.ADMIN && !logare(client.get(),parola)){
+        if(client.get().getRol()!= Client.Rol.ADMIN || !logare(client.get(),parola)){
             throw ClientException.noPermission();
         }
-        return destinatieRepo.save(new Destinatie(tara,localitate, Destinatie.Zona_covid.valueOf(zona_covid)));
+        return destinatieRepo.save(destinatie);
     }
 
     //functie prin care admin-ul poate adauga intarzieri unui anumit zbor
@@ -122,15 +137,15 @@ public class ZborService {
 
    }
 
-    public Aeroport addAeroport(String denumire, String localitate, int capacitate, String email, String parola)throws DataIntegrityViolationException{
+    public Aeroport addAeroport(Aeroport aeroport, String email, String parola)throws DataIntegrityViolationException{
         Optional<Client>client= clientRepo.findByEmail(email);
         if(!client.isPresent()){
             throw ClientException.clientNotFound();
         }
-        if(client.get().getRol()!= Client.Rol.ADMIN && logare(client.get(),parola)){
+        if(client.get().getRol()!= Client.Rol.ADMIN || !logare(client.get(),parola)){
             throw ClientException.noPermission();
         }
-        return aeroportRepo.save(new Aeroport(denumire,localitate,capacitate));
+        return aeroportRepo.save(aeroport);
     }
 
 
@@ -139,7 +154,9 @@ public class ZborService {
         if(!client.isPresent()){
             throw ClientException.clientNotFound();
         }
-        if(client.get().getRol()!= Client.Rol.ADMIN && logare(client.get(),parola)){
+        log.info("rol: "+client.get().getRol());
+        log.info("logare: "+logare(client.get(),parola));
+        if(client.get().getRol()!= Client.Rol.ADMIN || !logare(client.get(),parola)){
             throw ClientException.noPermission();
         }
         Optional<Aeroport> aeroport_plecare=aeroportRepo.findById(aeroport_plecareID);

@@ -1,5 +1,10 @@
 package proiect.service;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import proiect.domain.Client;
 import proiect.domain.Destinatie;
 import proiect.domain.Zbor;
@@ -10,12 +15,10 @@ import proiect.repository.DestinatieRepo;
 import proiect.repository.ZborRepo;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
+@Slf4j
 public class BiletService {
 
     @Autowired
@@ -52,6 +55,24 @@ public class BiletService {
         }
         return zboruriposibile;
 
+    }
+    public Page<Zbor> findPaginatedFiltered(Pageable pageable, Date date, String localitate) {
+        log.info("se apeleaza paginarea cu filtrare pentru pagina: "+pageable.getPageNumber());
+        List<Zbor> zboruri = (List<Zbor>) getZboruriDataDestinatie(date,localitate);
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Zbor> list;
+        if (zboruri.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, zboruri.size());
+            list = zboruri.subList(startItem, toIndex);
+        }
+        Page<Zbor> zborPage
+                = new PageImpl<Zbor>(list, PageRequest.of(currentPage,
+                pageSize), zboruri.size());
+        return zborPage;
     }
 
     //intoarce lista zborurilor filtrate dupa ziua plecarii si a localitatii

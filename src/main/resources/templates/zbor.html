@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Zboruri</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
 
 </head>
 <body>
 <div class="container">
+    <form th:action="@{/bilet/filtrare}" method="get" enctype="multipart/form-data">
+        <input placeholder="Selecteaza data de plecare" type="text" id="filtrare_plecare" name="filtrare_plecare" class="form-control datepicker">
+    <input type="text" id="filtrare_localitate" name="filtrare_localitate" class="form-control">
+        <button type="submit" id="filtrare">Filtreaza</button>
+    </form>
     <table class="table table-hover ">
         <thead class="thead-inverse">
         <tr>
@@ -60,7 +67,12 @@ zboruri.totalPages -1}">Next</span>
     <div class="row">
         <div class="col-md-6">
             <a class="btn btn-primary" role="button" th:href="@{'/client'}">Vizualizare lista clienti</a>
-<!--            <a class="btn btn-primary" role="button" th:href="@{'/client/cont/new'}">Adauga cont</a>-->
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor/avion/new'}">Adauga avion</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor/pilot/new'}">Adauga pilot</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor/aeroport/new'}">Adauga aeroport</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor/destinatie/new'}">Adauga destinatie</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor/delay/new'}">Panou intarzieri</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor/new'}">Adauga zbor</a>
         </div>
         <!--        <div class="col-md-6">
                     <a class="btn btn-primary" role="button" th:href="@{'/participant/new'}">register</a>
@@ -75,3 +87,9 @@ zboruri.totalPages -1}">Next</span>
 
 </body>
 </html>
+<script>
+    $(".datepicker").datepicker({
+        dateFormat:'yy-mm-dd',
+    });
+
+</script>

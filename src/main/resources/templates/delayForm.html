@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avion Info</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<body>
+<form  th:action="@{/zbor/delay}" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h1 class="panel-title">Delay INFO</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Minute:</label>
+                        <input type="number" class="form-control" id="minute" name="minute"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Username:</label>
+                        <input type="text" class="form-control" id="user.name" name="user.name">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Parola:</label>
+                        <input type="password" class="form-control" id="user.parola" name="user.parola">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Zbor:</label>
+                    <select id="zbor_id" name="zbor_id">
+                        <option
+
+                                th:each="zbor: ${zboruri}"
+                                th:value="${zbor.id}" th:text="${zbor.plecare.locatie+' '+zbor.data_plecare+' '+zbor.sosire.locatie+' '+zbor.data_sosire}">
+
+                        </option>
+                    </select>
+                </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-7 ml-md-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

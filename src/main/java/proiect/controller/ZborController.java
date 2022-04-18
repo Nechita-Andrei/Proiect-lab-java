@@ -20,6 +20,7 @@ import java.awt.print.Pageable;
 import java.net.URI;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -41,70 +42,96 @@ public class ZborController {
         return modelAndView;
     }
 
-    @PostMapping(path = "/avion",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Void>addAvion(String model, int numar_locuri, int an_constructie, String user, String parola){
-            Avion avion=zborService.addAvion(model,numar_locuri,an_constructie,user,parola);
-//            URI uri= WebMvcLinkBuilder.linkTo(ZborController.class).slash("avion").slash(avion.getId()).toUri();
-//            return ResponseEntity.created(uri).build();
-            return ResponseEntity.ok().build();
+    @RequestMapping("/avion/new")
+    public ModelAndView newAvion() {
+        ModelAndView modelAndView = new ModelAndView("avionForm");
+        modelAndView.addObject("avion",new Avion());
+        return modelAndView;
+    }
+    @PostMapping(path = "/avion")
+    public ModelAndView addAvion(@ModelAttribute Avion avion, @RequestParam("user.name") String email, @RequestParam("user.parola") String parola){
+        zborService.addAvion(avion,email,parola);
+        log.info("s-a adaugat un avion");
+        return new ModelAndView("redirect:/zbor");
+    }
+
+    @RequestMapping("/pilot/new")
+    public ModelAndView newPilot() {
+        ModelAndView modelAndView = new ModelAndView("pilotForm");
+        modelAndView.addObject("pilot",new Pilot());
+        return modelAndView;
+    }
+    @PostMapping(path = "/pilot")
+    public ModelAndView addPilot(Pilot pilot, @RequestParam("user.name")String user,@RequestParam("user.parola")String parola){
+        zborService.addPilot(pilot,user,parola);
+        log.info("s-a adaugat un pilot");
+        return new ModelAndView("redirect:/zbor");
+    }
+
+    @RequestMapping("/destinatie/new")
+    public ModelAndView newDestinatie() {
+        ModelAndView modelAndView = new ModelAndView("destinatieForm");
+        modelAndView.addObject("destinatie",new Destinatie());
+        return modelAndView;
+    }
+    @PostMapping(path = "/destinatie")
+    public ModelAndView addDestinatie(Destinatie destinatie, @RequestParam("user.name")String user,@RequestParam("user.parola")String parola){
+        zborService.addDestinatie(destinatie,user,parola);
+        log.info("s-a adaugat o destinatie");
+        return new ModelAndView("redirect:/zbor");
+    }
+
+    @RequestMapping("/aeroport/new")
+    public ModelAndView newAeroport() {
+        ModelAndView modelAndView = new ModelAndView("aeroportForm");
+        modelAndView.addObject("aeroport",new Aeroport());
+        return modelAndView;
+    }
+    @PostMapping(path = "/aeroport")
+    public ModelAndView addAeroport(Aeroport aeroport,@RequestParam("user.name")String user,@RequestParam("user.parola")String parola) {
+       zborService.addAeroport(aeroport,user,parola);
+       log.info("s-a adaugat un aeroport");
+        return new ModelAndView("redirect:/zbor");
+    }
+
+    @RequestMapping("/new")
+    public ModelAndView newZbor(){
+        ModelAndView modelAndView=new ModelAndView("zborForm");
+        Iterable<Aeroport>aeroporturi= zborService.getAllAeroporturi();
+        Iterable<Pilot> piloti= zborService.getAllPiloti();
+        Iterable<Destinatie>destinatii= zborService.getAllDestinatii();
+        Iterable<Avion>avioane= zborService.getAllAvioane();
+
+        modelAndView.addObject("avioane",avioane);
+        modelAndView.addObject("destinatii",destinatii);
+        modelAndView.addObject("piloti",piloti);
+        modelAndView.addObject("aeroporturi",aeroporturi);
+        return modelAndView;
+    }
+
+    @PostMapping
+    public ModelAndView addZbor(@RequestParam("aeroport_plecare") int aeroport_plecare, @RequestParam("aeroport_sosire") int aeroport_sosire, @RequestParam("pilot") int pilot,
+                                        @RequestParam("avion") int avion, @RequestParam("destinatie") int destinatie, @RequestParam("plecare") String plecare, @RequestParam("sosire") String sosire,
+                                        @RequestParam("pret") int pret, @RequestParam("user.name") String user, @RequestParam("user.parola") String parola){
+
+            zborService.addZbor(aeroport_plecare,aeroport_sosire,pilot,avion,destinatie,Date.valueOf(plecare),Date.valueOf(sosire),pret,user,parola);
+            log.info("s-a adaugat un zbor");
+            return new ModelAndView("redirect:/zbor");
 
     }
 
-    @PostMapping(path = "/pilot",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Void> addPilot(String nume, String prenume,int varsta, double salariu, String experienta,String user,String parola){
-        try{
-            Pilot pilot=zborService.addPilot(nume,prenume,varsta,salariu,experienta,user,parola);
-            URI uri= WebMvcLinkBuilder.linkTo(ZborController.class).slash("pilot").slash(pilot.getId()).toUri();
-            return ResponseEntity.created(uri).build();
-        }catch (ClientException| DataIntegrityViolationException clientException){
-            return ResponseEntity.badRequest().build();
-        }
+    @RequestMapping("/delay/new")
+    public ModelAndView newDelay() {
+        ModelAndView modelAndView = new ModelAndView("delayForm");
+        List<Zbor>zboruri= (List<Zbor>) zborService.getAllZboruri();
+        modelAndView.addObject("zboruri",zboruri);
+        return modelAndView;
     }
-
-    @PostMapping(path = "/destinatie",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Void> addDestinatie(String tara, String localitate, String zona_covid,String user, String parola){
-        try {
-            Destinatie destinatie=zborService.addDestinatie(tara,localitate,zona_covid,user,parola);
-            URI uri= WebMvcLinkBuilder.linkTo(ZborController.class).slash("destinatie").slash(destinatie.getId()).toUri();
-            return ResponseEntity.created(uri).build();
-
-        }catch (ClientException| DataIntegrityViolationException clientException){
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    @PostMapping(path = "/aeroport",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Void> addAeroport(String denumire, String localitate, int capacitate,String user,String parola) {
-        try {
-            Aeroport aeroport = zborService.addAeroport(denumire, localitate, capacitate, user, parola);
-            URI uri = WebMvcLinkBuilder.linkTo(ZborController.class).slash("aeroport").slash(aeroport.getId()).toUri();
-            return ResponseEntity.created(uri).build();
-        } catch (ClientException| DataIntegrityViolationException clientException) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
-    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public ResponseEntity<Void> addZbor(int aeroport_plecare, int aeroport_sosire, int pilot, int avion, int destinatie, String plecare, String sosire, int pret, String user, String parola){
-        try {
-            Zbor zbor = zborService.addZbor(aeroport_plecare, aeroport_sosire, pilot, avion, destinatie, Date.valueOf(plecare), Date.valueOf(sosire),pret,user,parola);
-//            URI uri= WebMvcLinkBuilder.linkTo(ZborController.class).slash("zboruri").slash(zbor.getId()).toUri();
-//            return ResponseEntity.created(uri).build();
-            return ResponseEntity.ok().build();
-        }catch (ZborException zborException){
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @GetMapping("/delay/{zbor_id}/{minute}/{email}/{parola}")
-
-    public ResponseEntity<Void>adaugaDelay(@PathVariable("zbor_id") int zbor, @PathVariable("minute") int minute, @PathVariable("email") String email, @PathVariable("parola") String parola){
-        try{
-            zborService.adaugaDelay(zbor,minute,email,parola);
-            return ResponseEntity.ok().build();
-        }catch (ClientException | ZborException exception){
-            return ResponseEntity.noContent().build();
-        }
+    @PostMapping("/delay")
+    public ModelAndView adaugaDelay(@RequestParam("zbor_id") int zbor, @RequestParam("minute") int minute, @RequestParam("user.name") String email, @RequestParam("user.parola") String parola){
+        zborService.adaugaDelay(zbor,minute,email,parola);
+        log.info("s-a adaugat delay");
+        return new ModelAndView("redirect:/zbor");
     }
 
 }

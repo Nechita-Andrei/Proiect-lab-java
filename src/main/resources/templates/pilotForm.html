@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avion Info</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<body>
+<form th:object="${pilot}" th:action="@{/zbor/pilot}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}"/>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h1 class="panel-title">Pilot INFO</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Nume:</label>
+                        <input type="text" class="form-control" th:field="*{nume}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Prenume:</label>
+                        <input type="text" class="form-control" th:field="*{prenume}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Varsta:</label>
+                        <input type="text" class="form-control" th:field="*{varsta}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Salariu:</label>
+                        <input type="text" class="form-control" th:field="*{salariu}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Experienta:</label>
+                        <select id="experienta" name="experienta" th:field="*{experienta}">
+                            <option
+
+                                    th:each="experienta:${T(proiect.domain.Pilot.Experienta).values()}"
+                                    th:value="${experienta}" th:text="${experienta.name()}">
+
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Username:</label>
+                        <input type="text" class="form-control" id="user.name" name="user.name">
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Parola:</label>
+                        <input type="password" class="form-control" id="user.parola" name="user.parola">
+                    </div>
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-7 ml-md-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
