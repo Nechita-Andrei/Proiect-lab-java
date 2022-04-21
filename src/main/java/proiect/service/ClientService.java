@@ -33,6 +33,14 @@ public class ClientService {
         return adresaRepo.save(adresa);
     }
 
+    public void deleteClient(Integer user_id){
+        Optional<Client>client=clientRepo.findById(user_id);
+        if(!client.isPresent()) {
+            throw ClientException.clientNotFound();
+        }
+        clientRepo.delete(client.get());
+    }
+
     public Adresa findAdresaById(Integer id){
         Optional<Adresa> adresa=adresaRepo.findById(id);
         if(!adresa.isPresent()){

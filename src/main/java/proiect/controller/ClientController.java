@@ -2,18 +2,13 @@ package proiect.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import proiect.domain.Adresa;
 import proiect.domain.Client;
 import proiect.domain.Cont;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import proiect.service.ClientException;
 import proiect.service.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +22,7 @@ public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
 
 
     @GetMapping
@@ -95,6 +91,12 @@ public class ClientController {
         Adresa adresa=clientService.findAdresaById(adresa_id);
         modelAndView.addObject("adresa",adresa);
         return modelAndView;
+    }
+
+    @RequestMapping("/delete/{id_user}")
+    public ModelAndView deleteClient(@PathVariable("id_user") int id_user){
+        clientService.deleteClient(id_user);
+        return new ModelAndView("redirect:/client");
     }
 
     @PostMapping

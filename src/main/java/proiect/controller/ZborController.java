@@ -1,25 +1,18 @@
 package proiect.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.dom4j.rule.Mode;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
 import proiect.domain.*;
-import proiect.service.ClientException;
-import proiect.service.ZborException;
 import proiect.service.ZborService;
 
-import java.awt.print.Pageable;
-import java.net.URI;
+import javax.websocket.server.PathParam;
 import java.sql.Date;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +25,14 @@ public class ZborController {
     private ZborService zborService;
 
     @GetMapping
-    public ModelAndView getZboruri(@RequestParam("page") Optional<Integer> page){
+    public ModelAndView getZboruri(@RequestParam("page") Optional<Integer> page,@RequestParam(value = "sort", required = false) Optional<String> sort_column){
         ModelAndView modelAndView=new ModelAndView("zbor");
         int currentPage=page.orElse(1);
         int pageSize = 5;
-
-        Page<Zbor> zborPage=zborService.findPaginated(PageRequest.of(currentPage-1,pageSize));
+        log.info("inainte este: "+sort_column);
+        String column_to_sort=sort_column.orElse("idasc");
+        log.info("se sorteaza dupa: "+column_to_sort);
+        Page<Zbor> zborPage=zborService.findPaginated(PageRequest.of(currentPage-1,pageSize),column_to_sort);
         modelAndView.addObject("zboruri",zborPage);
         return modelAndView;
     }
@@ -67,6 +62,8 @@ public class ZborController {
         log.info("s-a adaugat un pilot");
         return new ModelAndView("redirect:/zbor");
     }
+
+
 
     @RequestMapping("/destinatie/new")
     public ModelAndView newDestinatie() {

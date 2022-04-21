@@ -37,6 +37,7 @@
             <td><a href="#" th:href="@{'/bilet/zboruri/' + ${client.email}}">Vizualizare bilete</a></td>
             <td><a href="#" th:href="@{'/bilet/client/' + ${client.email}+'/verifica_discount'}">Verifica discount</a>
                 <a href="#" th:href="@{'/bilet/arataBilete/client/'+${client.email}}">Cumpara un bilet</a>
+                <a href="#" th:href="@{'/client/delete/'+${client.id}}">Sterge clientul</a>
             </td>
 
         </tr>
