@@ -1,6 +1,7 @@
 package proiect.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.Set;
