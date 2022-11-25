@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-@Profile("mysql")
+@Profile("mysql | oracle")
 public class SecurityJdbcConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
