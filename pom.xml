@@ -99,6 +99,16 @@
         <dependency>
             <groupId>com.oracle.ojdbc</groupId>
             <artifactId>ojdbc8</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.oracle.database.ha</groupId>
+                    <artifactId>simplefan</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.oracle.database.ha</groupId>
+                    <artifactId>ons</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
