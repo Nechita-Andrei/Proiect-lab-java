@@ -9,7 +9,8 @@ public class Contact {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_generator")
+    @SequenceGenerator(name = "my_generator", sequenceName = "id_contact")
     private int id_contact;
 
     @Column

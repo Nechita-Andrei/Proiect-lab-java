@@ -35,6 +35,11 @@ public class ContactController {
 
     }
 
+    @RequestMapping("/delete/{id_contact}")
+    public ModelAndView deleteContact(@PathVariable("id_contact") int id_contact) throws Exception {
+       contactService.deleteContact(id_contact);
+        return new ModelAndView("redirect:/contact");
+    }
     @RequestMapping("/new")
     public ModelAndView newContact() {
         ModelAndView modelAndView = new ModelAndView("contactForm");
