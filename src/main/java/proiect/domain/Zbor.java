@@ -123,11 +123,11 @@ public class Zbor {
     private Aeroport sosire;
 
     @OneToOne
-    @JoinColumn(name = "avion_id",referencedColumnName = "id")
+    @JoinColumn(name = "avion_id",referencedColumnName = "id_avion")
     private Avion avion;
 
     @OneToOne
-    @JoinColumn(name = "pilot_id",referencedColumnName = "id")
+    @JoinColumn(name = "pilot_id",referencedColumnName = "id_pilot")
     private Pilot pilot;
 
     @OneToOne

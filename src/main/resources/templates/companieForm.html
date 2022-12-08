@@ -23,11 +23,19 @@
                         <label>Anul infiintarii:</label>
                         <input type="text" class="form-control" th:field="*{anul_infiintarii}"/>
                     </div>
-                    <div class="col-md-3 form-group">
-                        <label>Contact:</label>
-                        <input type="text" class="form-control" th:field="*{contact.id_contact}"/>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Contact:</label>
+                            <select name="contact">
+                                <option
+
+                                        th:each="contact: ${contacte}"
+                                        th:value="${contact.id_contact}" th:text="${contact.email+' '+contact.website}">
+
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
 
 

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Avion Info</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <body>
-<form th:object="${avion}" th:action="@{/zbor/avion}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id}"/>
+<form th:object="${avion}" th:action="@{/avion}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id_avion}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -16,42 +16,44 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3 form-group">
-                        <label>An constructie:</label>
-                        <input type="text" class="form-control" th:field="*{an_constructie}"/>
+                        <label>Denumire:</label>
+                        <input type="text" class="form-control" th:field="*{denumire}"/>
                     </div>
                     <div class="col-md-3 form-group">
-                        <label>Numar maxim pasageri:</label>
-                        <input type="text" class="form-control" th:field="*{nr_locuri}"/>
+                        <label>Anul construirii:</label>
+                        <input type="number" class="form-control" th:field="*{an_constructie}"/>
                     </div>
                     <div class="col-md-3 form-group">
-                        <label>Model:</label>
-                        <input type="text" class="form-control" th:field="*{model}"/>
+                        <label>Capacitate:</label>
+                        <input type="number" class="form-control" th:field="*{capacitate}"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Companie aeriana:</label>
+                            <select name="companieAerianaAvion">
+                                <option
+
+                                        th:each="companie: ${companii}"
+                                        th:value="${companie.id_companie_aeriana}" th:text="${companie.denumire}">
+
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-3 form-group">
-                        <label>Username:</label>
-                        <input type="text" class="form-control" id="user.name" name="user.name">
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Parola:</label>
-                        <input type="password" class="form-control" id="user.parola" name="user.parola">
-                    </div>
-
-                </div>
-
-
-
-                <div class="row">
-                    <div class="col-md-7 ml-md-auto">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-
             </div>
+
+
+            <div class="row">
+                <div class="col-md-7 ml-md-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
         </div>
     </div>
+
+
 </form>
 </body>
 </html>

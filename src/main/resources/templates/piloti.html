@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Piloti</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>Data nasterii</th>
+            <th>Data angajarii</th>
+            <th>Companie</th>
+            <th>Actiuni</th>
+        </tr>
+        </thead>
+        <tr th:each="pilot: ${piloti}">
+            <td th:text="${pilot.id_pilot}"></td>
+            <td th:text="${pilot.nume}"></td>
+            <td th:text="${pilot.prenume}"></td>
+            <td th:text="${pilot.data_nasterii}"></td>
+            <td th:text="${pilot.data_angajarii}"></td>
+            <td th:text="${pilot.companieAerianaPilot.denumire}"></td>
+            <td> <a href="#" th:href="@{'/pilot/delete/'+${pilot.id_pilot}}">Sterge pilot</a> </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/pilot/new'}">Adauga pilot</a>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Companii aeriene</title>
+    <title>Avioane</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
@@ -15,17 +15,19 @@
         <tr>
             <th>ID</th>
             <th>Denumire</th>
-            <th>Anul infiintarii</th>
-            <th>Contact</th>
+            <th>Anul construirii</th>
+            <th>Capacitate</th>
+            <th>Companie</th>
             <th>Actiuni</th>
         </tr>
         </thead>
-        <tr th:each="companie: ${companii}">
-            <td th:text="${companie.id_companie_aeriana}"></td>
-            <td th:text="${companie.denumire}"></td>
-            <td th:text="${companie.anul_infiintarii}"></td>
-            <td th:text="${companie.contact.website}"></td>
-            <td> <a href="#" th:href="@{'/companie/delete/'+${companie.id_companie_aeriana}}">Sterge companie</a> </td>
+        <tr th:each="avion: ${avioane}">
+            <td th:text="${avion.id_avion}"></td>
+            <td th:text="${avion.denumire}"></td>
+            <td th:text="${avion.an_constructie}"></td>
+            <td th:text="${avion.capacitate}"></td>
+            <td th:text="${avion.companieAerianaAvion.denumire}"></td>
+            <td> <a href="#" th:href="@{'/avion/delete/'+${avion.id_avion}}">Sterge avion</a> </td>
         </tr>
     </table>
 </div>
@@ -33,7 +35,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <a class="btn btn-primary" role="button" th:href="@{'/companie/new'}">Adauga companie aeriana noua</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/avion/new'}">Adauga avion</a>
         </div>
     </div>
 </div>

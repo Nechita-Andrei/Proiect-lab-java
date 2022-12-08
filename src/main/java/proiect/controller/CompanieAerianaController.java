@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import proiect.domain.CompanieAeriana;
 import proiect.domain.Contact;
 import proiect.service.CompanieAerianaService;
+import proiect.service.ContactService;
 
 @RestController
 @RequestMapping("/companie")
@@ -15,6 +16,9 @@ public class CompanieAerianaController {
 
     @Autowired
     private CompanieAerianaService companieAerianaService;
+
+    @Autowired
+    private ContactService contactService;
 
 
     @PostMapping
@@ -42,6 +46,7 @@ public class CompanieAerianaController {
     public ModelAndView newCompanie() {
         ModelAndView modelAndView = new ModelAndView("companieForm");
         modelAndView.addObject("companie", new CompanieAeriana());
+        modelAndView.addObject("contacte", contactService.getContacte());
         return modelAndView;
     }
 }

@@ -1,29 +1,42 @@
 package proiect.domain;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 
 @Entity
-@Table(name = "pilot")
+@Table(name = "PILOT")
 public class Pilot {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_generator_pilot")
+    @SequenceGenerator(name = "my_generator_pilot", sequenceName = "id_pilot")
+    private int id_pilot;
 
-    @Column(nullable = false,length = 20)
+
     private String nume;
+    private String prenume;
+    private Date data_nasterii;
+    private Date data_angajarii;
+    @ManyToOne
+    @JoinColumn(name = "id_companie_aeriana")
+    private CompanieAeriana companieAerianaPilot;
+
+
+
+
+
 
     public Pilot() {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Pilot(String nume, String prenume, Date data_nasterii, Date data_angajarii, CompanieAeriana companieAerianaPilot) {
+        this.nume = nume;
+        this.prenume = prenume;
+        this.data_nasterii = data_nasterii;
+        this.data_angajarii = data_angajarii;
+        this.companieAerianaPilot = companieAerianaPilot;
     }
 
     public String getNume() {
@@ -42,55 +55,31 @@ public class Pilot {
         this.prenume = prenume;
     }
 
-    public int getVarsta() {
-        return varsta;
+    public Date getData_nasterii() {
+        return data_nasterii;
     }
 
-    public void setVarsta(int varsta) {
-        this.varsta = varsta;
+    public void setData_nasterii(Date data_nasterii) {
+        this.data_nasterii = data_nasterii;
     }
 
-    public double getSalariu() {
-        return salariu;
+    public Date getData_angajarii() {
+        return data_angajarii;
     }
 
-    public void setSalariu(double salariu) {
-        this.salariu = salariu;
+    public void setData_angajarii(Date data_angajarii) {
+        this.data_angajarii = data_angajarii;
     }
 
-    public Experienta getExperienta() {
-        return experienta;
+    public CompanieAeriana getCompanieAerianaPilot() {
+        return companieAerianaPilot;
     }
 
-    public void setExperienta(Experienta experienta) {
-        this.experienta = experienta;
+    public void setCompanieAerianaPilot(CompanieAeriana companieAerianaPilot) {
+        this.companieAerianaPilot = companieAerianaPilot;
     }
 
-    public Pilot( String nume, String prenume, int varsta, double salariu, Experienta experienta) {
-        this.nume = nume;
-        this.prenume = prenume;
-        this.varsta = varsta;
-        this.salariu = salariu;
-        this.experienta = experienta;
-    }
-
-    @Column(nullable = false,length = 20)
-    private String prenume;
-
-    @Column
-    private int varsta;
-
-    @Column
-    private double salariu;
-
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private Experienta experienta;
-
-    public enum Experienta{
-        INCEPATOR,
-        MEDIU,
-        AVANSAT,
-        SENIOR
+    public int getId_pilot() {
+        return id_pilot;
     }
 }

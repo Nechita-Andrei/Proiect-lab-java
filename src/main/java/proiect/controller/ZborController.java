@@ -37,33 +37,6 @@ public class ZborController {
         return modelAndView;
     }
 
-    @RequestMapping("/avion/new")
-    public ModelAndView newAvion() {
-        ModelAndView modelAndView = new ModelAndView("avionForm");
-        modelAndView.addObject("avion",new Avion());
-        return modelAndView;
-    }
-    @PostMapping(path = "/avion")
-    public ModelAndView addAvion(@ModelAttribute Avion avion, @RequestParam("user.name") String email, @RequestParam("user.parola") String parola){
-        zborService.addAvion(avion,email,parola);
-        log.info("s-a adaugat un avion");
-        return new ModelAndView("redirect:/zbor");
-    }
-
-    @RequestMapping("/pilot/new")
-    public ModelAndView newPilot() {
-        ModelAndView modelAndView = new ModelAndView("pilotForm");
-        modelAndView.addObject("pilot",new Pilot());
-        return modelAndView;
-    }
-    @PostMapping(path = "/pilot")
-    public ModelAndView addPilot(Pilot pilot, @RequestParam("user.name")String user,@RequestParam("user.parola")String parola){
-        zborService.addPilot(pilot,user,parola);
-        log.info("s-a adaugat un pilot");
-        return new ModelAndView("redirect:/zbor");
-    }
-
-
 
     @RequestMapping("/destinatie/new")
     public ModelAndView newDestinatie() {
@@ -78,18 +51,6 @@ public class ZborController {
         return new ModelAndView("redirect:/zbor");
     }
 
-    @RequestMapping("/aeroport/new")
-    public ModelAndView newAeroport() {
-        ModelAndView modelAndView = new ModelAndView("aeroportForm");
-        modelAndView.addObject("aeroport",new Aeroport());
-        return modelAndView;
-    }
-    @PostMapping(path = "/aeroport")
-    public ModelAndView addAeroport(Aeroport aeroport,@RequestParam("user.name")String user,@RequestParam("user.parola")String parola) {
-       zborService.addAeroport(aeroport,user,parola);
-       log.info("s-a adaugat un aeroport");
-        return new ModelAndView("redirect:/zbor");
-    }
 
     @RequestMapping("/new")
     public ModelAndView newZbor(){

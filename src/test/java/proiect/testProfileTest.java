@@ -35,12 +35,5 @@ public class testProfileTest {
         assertEquals(destinatie.getZona_covid(), Destinatie.ZonaCovid.VERDE);
     }
 
-    @Test
-    public void testAdaugareAvion(){
-        Avion avion=new Avion("avion de test",200,2010);
-        Avion avionCreat=avionRepo.save(avion);
-        assertNotNull(avionCreat.getId());
-        assertEquals(avion.getAn_constructie(),avionCreat.getAn_constructie());
-        assertEquals(avion.getModel(),avionCreat.getModel());
-    }
+
 }
