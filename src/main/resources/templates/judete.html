@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Judete</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Denumire</th>
+            <th>Abreviere</th>
+            <th>Tara</th>
+            <th>Actiuni</th>
+        </tr>
+        </thead>
+        <tr th:each="judet: ${judete}">
+            <td th:text="${judet.id_judet}"></td>
+            <td th:text="${judet.denumire}"></td>
+            <td th:text="${judet.abreviere}"></td>
+            <td th:text="${judet.tara.denumire}"></td>
+            <td> <a href="#" th:href="@{'/judet/delete/'+${judet.id_judet}}">Sterge judet</a> </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/judet/new'}">Adauga judet</a>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
