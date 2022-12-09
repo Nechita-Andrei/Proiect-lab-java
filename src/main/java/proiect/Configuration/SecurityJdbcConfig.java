@@ -28,7 +28,6 @@ public class SecurityJdbcConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/client/*").hasRole("ADMIN")
                 .antMatchers("/client//adresa/new").hasRole("ADMIN")
                 .antMatchers("/bilet/client/*/verifica_discount").hasRole("GUEST")
                 .antMatchers("/zbor/avion/new").hasRole("ADMIN")

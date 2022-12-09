@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tipuri bilet</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Denumire</th>
+            <th>Descriere</th>
+            <th>Actiuni</th>
+        </tr>
+        </thead>
+        <tr th:each="tip: ${tipuri}">
+            <td th:text="${tip.id_tip_bilet}"></td>
+            <td th:text="${tip.denumire}"></td>
+            <td th:text="${tip.descriere}"></td>
+            <td> <a href="#" th:href="@{'/tip/delete/'+${tip.id_tip_bilet}}">Sterge tip</a> </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/tip/new'}">Adauga tip bilet</a>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

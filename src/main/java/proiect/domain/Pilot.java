@@ -23,10 +23,6 @@ public class Pilot {
     private CompanieAeriana companieAerianaPilot;
 
 
-
-
-
-
     public Pilot() {
 
     }
@@ -81,5 +77,17 @@ public class Pilot {
 
     public int getId_pilot() {
         return id_pilot;
+    }
+
+    @Override
+    public String toString() {
+        return "Pilot{" +
+                "id_pilot=" + id_pilot +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", data_nasterii=" + data_nasterii +
+                ", data_angajarii=" + data_angajarii +
+                ", companieAerianaPilot=" + companieAerianaPilot +
+                '}';
     }
 }

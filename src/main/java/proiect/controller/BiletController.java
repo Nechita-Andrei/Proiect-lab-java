@@ -31,15 +31,7 @@ public class BiletController {
     private BiletService biletService;
 
 
-    @GetMapping(path = "/zboruri/{client_email}")
-    public ModelAndView getZboruriClient(@PathVariable("client_email") String email){
-            Set<Zbor> zboruri = biletService.getZboruriClient(email);
-            ModelAndView modelAndView=new ModelAndView("zboruriClient");
-            modelAndView.addObject("zboruri",zboruri);
-            log.info("s-au afisat toate zborurile pentru clientul: "+email);
-            return modelAndView;
 
-    }
 
     @GetMapping(path = "/pasageri/{zbor_id}")
     public ModelAndView getPasageri(@PathVariable("zbor_id") int zborId){
@@ -50,26 +42,10 @@ public class BiletController {
             return modelAndView;
     }
 
-    @RequestMapping(path = "/client/{client_email}/zbor/{zbor_id}")
-    public ModelAndView cumparaBilet(@PathVariable("client_email") String email, @PathVariable("zbor_id") Integer zborId){
-        biletService.cumparaBilet(zborId,email);
-        log.info("s-a cumparat cu succes un bilet la zborul: "+zborId+" de catre "+email);
-        return new ModelAndView("redirect:/bilet/arataBilete/client/"+email);
 
 
 
 
-    }
-
-    @RequestMapping(path = "/arataBilete/client/{client_email}")
-    public ModelAndView arataBiletePosibileClient(@PathVariable("client_email") String email){
-        List<Zbor>zboruri=biletService.getZboruriPosibile(email);
-        ModelAndView modelAndView=new ModelAndView("zboruriPosibile");
-        modelAndView.addObject("zboruri",zboruri);
-        modelAndView.addObject("client",email);
-        log.info("s-au afisat zborurile a caror bilete pot fi achizitionate de catre: "+email);
-        return modelAndView;
-    }
 
     @RequestMapping(path = "/filtrare")
     public ModelAndView filtreazaZboruri(@RequestParam("page") Optional<Integer> page,@RequestParam("filtrare_plecare") String plecare, @RequestParam ("filtrare_localitate") String localitate){
@@ -86,21 +62,7 @@ public class BiletController {
         return modelAndView;
     }
 
-    @RequestMapping ("/client/{client_email}/verifica_discount")
-    public ModelAndView verificaDiscountClient(@PathVariable("client_email") String email, RedirectAttributes redirectAttributes){
-            try {
-                biletService.verificaDiscount(email);
-            }catch (ClientException clientException){
-                //ai addFlashAttribute
-                redirectAttributes.addFlashAttribute("mesaj","User-ul nu este eligibil pentru discount");
-                redirectAttributes.addFlashAttribute("color","red");
-                return new ModelAndView("redirect:/client");
-            }
-            log.info("s-a verificat discount-ul pentru "+email);
-        redirectAttributes.addFlashAttribute("mesaj","User-ul este eligibil pentru discount si a fost salvat corespunzator!");
-        redirectAttributes.addFlashAttribute("color","green");
-        return new ModelAndView("redirect:/client");
-    }
+
 
 
 

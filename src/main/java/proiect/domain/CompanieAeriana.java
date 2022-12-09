@@ -1,13 +1,7 @@
 package proiect.domain;
 
 
-import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -86,5 +80,17 @@ public class CompanieAeriana {
 
     public void setAvioane(Set<Avion> avioane) {
         this.avioane = avioane;
+    }
+
+    @Override
+    public String toString() {
+        return "CompanieAeriana{" +
+                "id_companie_aeriana=" + id_companie_aeriana +
+                ", denumire='" + denumire + '\'' +
+                ", anul_infiintarii=" + anul_infiintarii +
+                ", contact=" + contact +
+                ", piloti=" + piloti +
+                ", avioane=" + avioane +
+                '}';
     }
 }

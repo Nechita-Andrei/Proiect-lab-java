@@ -66,4 +66,15 @@ public class Avion {
     public void setCompanieAerianaAvion(CompanieAeriana companieAerianaAvion) {
         this.companieAerianaAvion = companieAerianaAvion;
     }
+
+    @Override
+    public String toString() {
+        return "Avion{" +
+                "id_avion=" + id_avion +
+                ", denumire='" + denumire + '\'' +
+                ", an_constructie=" + an_constructie +
+                ", capacitate=" + capacitate +
+                ", companieAerianaAvion=" + companieAerianaAvion +
+                '}';
+    }
 }

@@ -44,12 +44,6 @@ public class ZborController {
         modelAndView.addObject("destinatie",new Destinatie());
         return modelAndView;
     }
-    @PostMapping(path = "/destinatie")
-    public ModelAndView addDestinatie(Destinatie destinatie, @RequestParam("user.name")String user,@RequestParam("user.parola")String parola){
-        zborService.addDestinatie(destinatie,user,parola);
-        log.info("s-a adaugat o destinatie");
-        return new ModelAndView("redirect:/zbor");
-    }
 
 
     @RequestMapping("/new")
@@ -67,16 +61,7 @@ public class ZborController {
         return modelAndView;
     }
 
-    @PostMapping
-    public ModelAndView addZbor(@RequestParam("aeroport_plecare") int aeroport_plecare, @RequestParam("aeroport_sosire") int aeroport_sosire, @RequestParam("pilot") int pilot,
-                                        @RequestParam("avion") int avion, @RequestParam("destinatie") int destinatie, @RequestParam("plecare") String plecare, @RequestParam("sosire") String sosire,
-                                        @RequestParam("pret") int pret, @RequestParam("user.name") String user, @RequestParam("user.parola") String parola){
 
-            zborService.addZbor(aeroport_plecare,aeroport_sosire,pilot,avion,destinatie,Date.valueOf(plecare),Date.valueOf(sosire),pret,user,parola);
-            log.info("s-a adaugat un zbor");
-            return new ModelAndView("redirect:/zbor");
-
-    }
 
     @RequestMapping("/delay/new")
     public ModelAndView newDelay() {
@@ -84,12 +69,6 @@ public class ZborController {
         List<Zbor>zboruri= (List<Zbor>) zborService.getAllZboruri();
         modelAndView.addObject("zboruri",zboruri);
         return modelAndView;
-    }
-    @PostMapping("/delay")
-    public ModelAndView adaugaDelay(@RequestParam("zbor_id") int zbor, @RequestParam("minute") int minute, @RequestParam("user.name") String email, @RequestParam("user.parola") String parola){
-        zborService.adaugaDelay(zbor,minute,email,parola);
-        log.info("s-a adaugat delay");
-        return new ModelAndView("redirect:/zbor");
     }
 
 }

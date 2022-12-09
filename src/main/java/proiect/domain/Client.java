@@ -4,105 +4,50 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "client")
+@Table(name = "CLIENT")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_generator_client")
+    @SequenceGenerator(name = "my_generator_client", sequenceName = "id_client")
+    private int id_client;
 
-    @Column(nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private Client.Rol rol;
 
-    public enum Rol{
-      ADMIN,
-      CLIENT
-    }
-    @Column(nullable = false)
     private String nume;
 
-    @Column(nullable = false)
+
     private String prenume;
 
-    public void setDiscount(boolean discount) {
-        this.discount = discount;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public boolean isDiscount() {
-        return discount;
-    }
 
     @Column
-    private int varsta;
-
-    public Adresa getAdresa() {
-        return adresa;
-    }
-
-    public void setAdresa(Adresa adresa) {
-        this.adresa = adresa;
-    }
-
-    public Client(String nume, String prenume, int varsta, String email, String telefon, String parola, Cont cont, Rol rol, Adresa adresa) {
-        this.nume = nume;
-        this.prenume = prenume;
-        this.varsta = varsta;
-        this.email = email;
-        this.cont = cont;
-        this.telefon = telefon;
-        this.parola = parola;
-        this.discount=false;
-        this.rol=rol;
-        this.adresa=adresa;
-    }
-
-    @Column(nullable = false,unique = true)
-    private String email;
+    private Date data_nasterii;
 
     @OneToOne
-    @JoinColumn(name = "contId",referencedColumnName = "id")
-    private Cont cont;
+    @JoinColumn(name = "id_contact", referencedColumnName = "id_contact")
+    private Contact contact;
 
-    @Column(length = 10)
-    private String telefon;
 
-    @Column(nullable = false)
-    private String parola;
-
-    @Column
-    private boolean discount;
-
-    @ManyToOne
-    private Adresa adresa;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JsonIgnore
-    @JoinTable(name = "bilet", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "zbor_id"))
-    private Set<Zbor> zboruri;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JsonIgnore
+//    @JoinTable(name = "bilet", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "zbor_id"))
+//    private Set<Zbor> zboruri;
 
     public Client() {
 
     }
 
-    public Cont getCont() {
-        return cont;
+    public Client(String nume, String prenume, Date data_nasterii, Contact contact) {
+        this.nume = nume;
+        this.prenume = prenume;
+        this.data_nasterii = data_nasterii;
+        this.contact = contact;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNume() {
         return nume;
@@ -120,55 +65,44 @@ public class Client {
         this.prenume = prenume;
     }
 
-    public int getVarsta() {
-        return varsta;
+    public Date getData_nasterii() {
+        return data_nasterii;
     }
 
-    public void setVarsta(int varsta) {
-        this.varsta = varsta;
+    public void setData_nasterii(Date data_nasterii) {
+        this.data_nasterii = data_nasterii;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setCont(Cont cont) {
-        this.cont = cont;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public Set<Zbor> getZboruri() {
-        return zboruri;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefon() {
-        return telefon;
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id_client=" + id_client +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", data_nasterii=" + data_nasterii +
+                ", contact=" + contact +
+                '}';
     }
 
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
+    public int getId_client() {
+        return id_client;
     }
 
-    public String getParola() {
-        return parola;
-    }
 
-    public void setParola(String parola) {
-        this.parola = parola;
-    }
-
-    public void setZboruri(Set<Zbor> zboruri) {
-        this.zboruri = zboruri;
-    }
-
-    public void addZbor(Zbor zbor){
-        zboruri.add(zbor);
-    }
+//    public void setZboruri(Set<Zbor> zboruri) {
+//        this.zboruri = zboruri;
+//    }
+//
+//    public void addZbor(Zbor zbor){
+//        zboruri.add(zbor);
+//    }
 
 }

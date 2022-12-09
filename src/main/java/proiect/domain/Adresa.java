@@ -16,8 +16,8 @@ public class Adresa {
     private String judet;
     private String localitate;
     private String strada;
-    @OneToMany(mappedBy = "adresa")
-    private List<Client> clienti;
+
+
 
     public Adresa(String judet, String localitate, String strada) {
         this.judet = judet;
