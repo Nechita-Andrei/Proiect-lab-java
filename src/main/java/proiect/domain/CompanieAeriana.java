@@ -9,8 +9,8 @@ import java.util.Set;
 public class CompanieAeriana {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_generator_companie")
-    @SequenceGenerator(name = "my_generator_companie", sequenceName = "id_companie_aeriana")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_COMPANIE")
+    @SequenceGenerator(name = "MY_GENERATOR_COMPANIE", sequenceName = "ID_COMPANIE_AERIANA")
     private Integer id_companie_aeriana;
 
 

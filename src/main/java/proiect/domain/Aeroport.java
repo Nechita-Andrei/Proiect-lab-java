@@ -3,23 +3,24 @@ package proiect.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "aeroport")
+@Table(name = "AEROPORT")
 public class Aeroport {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_AEROPORT")
+    @SequenceGenerator(name = "MY_GENERATOR_AEROPORT", sequenceName = "ID_AEROPORT")
+    private int id_aeroport;
 
     public Aeroport() {
 
     }
 
-    public int getId() {
-        return id;
+    public int getId_aeroport() {
+        return id_aeroport;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_aeroport(int id_aeroport) {
+        this.id_aeroport = id_aeroport;
     }
 
     public String getDenumire() {

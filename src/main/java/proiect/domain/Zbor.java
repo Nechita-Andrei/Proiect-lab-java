@@ -8,18 +8,20 @@ import java.sql.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "zbor")
+@Table(name = "ZBOR")
 public class Zbor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ZBOR")
+    @SequenceGenerator(name = "MY_GENERATOR_ZBOR", sequenceName = "ID_ZBOR")
+    @Column(name = "id_zbor")
+    private Integer id;
 
 
 //
     @ManyToMany(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinTable(name = "bilet", joinColumns = @JoinColumn(name = "zbor_id"), inverseJoinColumns = @JoinColumn(name = "client_id"))
+    @JoinTable(name = "bilet", joinColumns = @JoinColumn(name = "id_zbor"), inverseJoinColumns = @JoinColumn(name = "id_client"))
     private Set<Client> pasageri;
     public Zbor() {
 
@@ -34,6 +36,10 @@ public class Zbor {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setPret(int pret) {
+        this.pret = pret;
     }
 
     public Aeroport getPlecare() {
@@ -106,11 +112,11 @@ public class Zbor {
     }
 
     @OneToOne
-    @JoinColumn(name = "plecare_id",referencedColumnName = "id")
+    @JoinColumn(name = "plecare_id",referencedColumnName = "id_aeroport")
     private Aeroport plecare;
 
     @OneToOne
-    @JoinColumn(name = "sosire_id",referencedColumnName = "id")
+    @JoinColumn(name = "sosire_id",referencedColumnName = "id_aeroport")
     private Aeroport sosire;
 
     @OneToOne

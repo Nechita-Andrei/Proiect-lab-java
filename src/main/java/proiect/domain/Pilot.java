@@ -9,8 +9,8 @@ import java.sql.Date;
 public class Pilot {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_generator_pilot")
-    @SequenceGenerator(name = "my_generator_pilot", sequenceName = "id_pilot")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_PILOT")
+    @SequenceGenerator(name = "MY_GENERATOR_PILOT", sequenceName = "ID_PILOT")
     private int id_pilot;
 
 

@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Judet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_generator_judet")
-    @SequenceGenerator(name = "my_generator_judet", sequenceName = "id_judet")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_JUDET")
+    @SequenceGenerator(name = "MY_GENERATOR_JUDET", sequenceName = "ID_JUDET")
     private Integer id_judet;
 
     private String denumire;

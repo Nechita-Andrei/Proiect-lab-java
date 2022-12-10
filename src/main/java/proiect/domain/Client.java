@@ -12,8 +12,8 @@ import java.util.Set;
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_generator_client")
-    @SequenceGenerator(name = "my_generator_client", sequenceName = "id_client")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_CLIENT")
+    @SequenceGenerator(name = "MY_GENERATOR_CLIENT", sequenceName = "ID_CLIENT")
     private int id_client;
 
 

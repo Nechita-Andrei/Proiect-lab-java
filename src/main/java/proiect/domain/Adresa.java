@@ -8,11 +8,13 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "ADRESA")
 public class Adresa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ADRESA")
+    @SequenceGenerator(name = "MY_GENERATOR_ADRESA", sequenceName = "ID_ADRESA")
+    private Integer id_adresa;
     private String judet;
     private String localitate;
     private String strada;
