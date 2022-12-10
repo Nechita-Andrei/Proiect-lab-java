@@ -68,14 +68,6 @@ public class Zbor {
         this.pilot = pilot;
     }
 
-    public Destinatie getDestinatie() {
-        return destinatie;
-    }
-
-    public void setDestinatie(Destinatie destinatie) {
-        this.destinatie = destinatie;
-    }
-
     public Date getData_plecare() {
         return data_plecare;
     }
@@ -102,12 +94,11 @@ public class Zbor {
         this.data_sosire = data_sosire;
     }
 
-    public Zbor( Aeroport plecare, Aeroport sosire, Avion avion, Pilot pilot, Destinatie destinatie, Date data_plecare, Date data_sosire, int pret) {
+    public Zbor( Aeroport plecare, Aeroport sosire, Avion avion, Pilot pilot, Date data_plecare, Date data_sosire, int pret) {
         this.plecare = plecare;
         this.sosire = sosire;
         this.avion = avion;
         this.pilot = pilot;
-        this.destinatie = destinatie;
         this.data_plecare = data_plecare;
         this.data_sosire = data_sosire;
         this.pret=pret;
@@ -129,10 +120,6 @@ public class Zbor {
     @OneToOne
     @JoinColumn(name = "pilot_id",referencedColumnName = "id_pilot")
     private Pilot pilot;
-
-    @OneToOne
-    @JoinColumn(name = "destinatie_id",referencedColumnName = "id")
-    private Destinatie destinatie;
 
     public int getPret() {
         return pret;

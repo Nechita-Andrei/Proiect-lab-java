@@ -24,6 +24,7 @@ public class ZborController {
     @Autowired
     private ZborService zborService;
 
+
     @GetMapping
     public ModelAndView getZboruri(@RequestParam("page") Optional<Integer> page,@RequestParam(value = "sort", required = false) Optional<String> sort_column){
         ModelAndView modelAndView=new ModelAndView("zbor");
@@ -38,29 +39,18 @@ public class ZborController {
     }
 
 
-    @RequestMapping("/destinatie/new")
-    public ModelAndView newDestinatie() {
-        ModelAndView modelAndView = new ModelAndView("destinatieForm");
-        modelAndView.addObject("destinatie",new Destinatie());
-        return modelAndView;
-    }
-
-
     @RequestMapping("/new")
     public ModelAndView newZbor(){
         ModelAndView modelAndView=new ModelAndView("zborForm");
         Iterable<Aeroport>aeroporturi= zborService.getAllAeroporturi();
         Iterable<Pilot> piloti= zborService.getAllPiloti();
-        Iterable<Destinatie>destinatii= zborService.getAllDestinatii();
         Iterable<Avion>avioane= zborService.getAllAvioane();
 
         modelAndView.addObject("avioane",avioane);
-        modelAndView.addObject("destinatii",destinatii);
         modelAndView.addObject("piloti",piloti);
         modelAndView.addObject("aeroporturi",aeroporturi);
         return modelAndView;
     }
-
 
 
     @RequestMapping("/delay/new")

@@ -6,12 +6,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import proiect.domain.Client;
-import proiect.domain.Destinatie;
 import proiect.domain.Zbor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.repository.ClientRepo;
-import proiect.repository.DestinatieRepo;
 import proiect.repository.ZborRepo;
 
 import java.sql.Date;
@@ -25,10 +23,6 @@ public class BiletService {
     private ClientRepo clientRepo;
     @Autowired
     private ZborRepo zborRepo;
-
-    @Autowired
-    private DestinatieRepo destinatieRepo;
-
 
 
 //intoarce lista pasagerilor unui anumit zbor
@@ -62,18 +56,18 @@ public class BiletService {
 
     //intoarce lista zborurilor filtrate dupa ziua plecarii si a localitatii
     public List<Zbor> getZboruriDataDestinatie(Date date, String localitate){
-        Optional<Destinatie> destinatie=destinatieRepo.findByLocalitate(localitate);
-        if(!destinatie.isPresent()){
-            throw ZborException.destinatieNotFound();
-        }
+//        Optional<Destinatie> destinatie=destinatieRepo.findByLocalitate(localitate);
+//        if(!destinatie.isPresent()){
+//            throw ZborException.destinatieNotFound();
+//        }
 
         List<Zbor> rezultat = new ArrayList<>();
         Iterable<Zbor> zboruri=zborRepo.findAll();
-        for(Zbor zbor : zboruri){
-            if (zbor.getData_plecare().equals(date) && zbor.getDestinatie().getLocalitate().equals(localitate)){
-                rezultat.add(zbor);
-            }
-        }
+//        for(Zbor zbor : zboruri){
+//            if (zbor.getData_plecare().equals(date) && zbor.getDestinatie().getLocalitate().equals(localitate)){
+//                rezultat.add(zbor);
+//            }
+//        }
         if(rezultat.isEmpty()){
             throw ZborException.zborNotFound();
         }

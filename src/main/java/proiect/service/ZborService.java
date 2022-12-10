@@ -32,9 +32,6 @@ public class ZborService {
     private PilotRepo pilotRepo;
 
     @Autowired
-    private DestinatieRepo destinatieRepo;
-
-    @Autowired
     private ClientRepo clientRepo;
 
     public Iterable<Zbor> getAllZboruri() {
@@ -43,10 +40,6 @@ public class ZborService {
 
     public Iterable<Aeroport> getAllAeroporturi() {
         return aeroportRepo.findAll();
-    }
-
-    public Iterable<Destinatie> getAllDestinatii() {
-        return destinatieRepo.findAll();
     }
 
     public Iterable<Avion> getAllAvioane() {
