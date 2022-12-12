@@ -11,6 +11,19 @@ public class Aeroport {
     @SequenceGenerator(name = "MY_GENERATOR_AEROPORT", sequenceName = "ID_AEROPORT")
     private int id_aeroport;
 
+    @Column(unique = true)
+    private String denumire;
+
+    @Column
+    private int an_constructie;
+
+    @Column
+    private int capacitate;
+
+    @OneToOne
+    @JoinColumn(name = "id_adresa",referencedColumnName = "id_adresa")
+    private Adresa adresa;
+
     public Aeroport() {
 
     }
@@ -31,12 +44,12 @@ public class Aeroport {
         this.denumire = denumire;
     }
 
-    public String getLocatie() {
-        return locatie;
+    public int getAn_constructie() {
+        return an_constructie;
     }
 
-    public void setLocatie(String locatie) {
-        this.locatie = locatie;
+    public void setAn_constructie(int an_constructie) {
+        this.an_constructie = an_constructie;
     }
 
     public int getCapacitate() {
@@ -47,18 +60,19 @@ public class Aeroport {
         this.capacitate = capacitate;
     }
 
-    public Aeroport( String denumire, String locatie, int capacitate) {
-        this.denumire = denumire;
-        this.locatie = locatie;
-        this.capacitate = capacitate;
+    public Adresa getAdresa() {
+        return adresa;
     }
 
-    @Column(unique = true)
-    private String denumire;
+    public void setAdresa(Adresa adresa) {
+        this.adresa = adresa;
+    }
 
-    @Column
-    private String locatie;
-
-    @Column
-    private int capacitate;
+    public Aeroport(int id_aeroport, String denumire, int an_constructie, int capacitate, Adresa adresa) {
+        this.id_aeroport = id_aeroport;
+        this.denumire = denumire;
+        this.an_constructie = an_constructie;
+        this.capacitate = capacitate;
+        this.adresa = adresa;
+    }
 }

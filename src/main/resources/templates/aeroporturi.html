@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aeroporturi</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Denumire</th>
+            <th>An_constructie</th>
+            <th>Capacitate</th>
+            <th>Strada</th>
+            <th>Actiuni</th>
+
+        </tr>
+        </thead>
+        <tr th:each="aeroport: ${aeroporturi}">
+            <td th:text="${aeroport.id_aeroport}"></td>
+            <td th:text="${aeroport.denumire}"></td>
+            <td th:text="${aeroport.an_constructie}"></td>
+            <td th:text="${aeroport.capacitate}"></td>
+            <td th:text="${aeroport.adresa?.strada}"></td> <<!--add more when adresa is implemented-->>
+            <td>
+                <a href="#" th:href="@{'/aeroport/delete/'+${aeroport.id_aeroport}}">Sterge aeroportul</a>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/aeroport/new'}">Adauga aeroport nou</a>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

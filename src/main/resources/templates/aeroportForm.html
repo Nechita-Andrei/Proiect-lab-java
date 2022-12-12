@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <body>
-<form th:object="${aeroport}" th:action="@{/zbor/aeroport}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id}"/>
+<form th:object="${aeroport}" th:action="@{/aeroport}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id_aeroport}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -23,26 +23,20 @@
                         <label>Denumire:</label>
                         <input type="text" class="form-control" th:field="*{denumire}"/>
                     </div>
-                    <div class="col-md-3 form-group">
-                        <label>Locatie:</label>
-                        <input type="text" class="form-control" th:field="*{locatie}"/>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Adresa:</label>
+                            <select name="adresaAeroport">
+                                <option
+
+                                        th:each="adresa: ${adrese}"
+                                        th:value="${adresa.id_adresa}" th:text="${adresa.strada}">
+
+                                </option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-3 form-group">
-                        <label>Username:</label>
-                        <input type="text" class="form-control" id="user.name" name="user.name">
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Parola:</label>
-                        <input type="password" class="form-control" id="user.parola" name="user.parola">
-                    </div>
-
-                </div>
-
-
-
                 <div class="row">
                     <div class="col-md-7 ml-md-auto">
                         <button type="submit" class="btn btn-primary">Submit</button>
