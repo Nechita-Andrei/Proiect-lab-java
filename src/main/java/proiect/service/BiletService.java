@@ -5,10 +5,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import proiect.domain.Bilet;
+import proiect.domain.BiletId;
 import proiect.domain.Client;
 import proiect.domain.Zbor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import proiect.repository.BiletRepo;
 import proiect.repository.ClientRepo;
 import proiect.repository.ZborRepo;
 
@@ -23,6 +26,24 @@ public class BiletService {
     private ClientRepo clientRepo;
     @Autowired
     private ZborRepo zborRepo;
+    @Autowired
+    private BiletRepo biletRepo;
+
+    public Bilet addBilet(Bilet bilet){
+        return biletRepo.save(bilet);
+    }
+
+    public void deleteBilet(Integer id_client, Integer id_zbor) throws Exception {
+        Optional<Bilet> bilet= biletRepo.findById(new BiletId(id_client, id_zbor));
+        if(!bilet.isPresent()) {
+            throw new Exception("no bilet found");
+        }
+        biletRepo.delete(bilet.get());
+    }
+
+    public Iterable<Bilet> getBilete() {
+        return biletRepo.findAll();
+    }
 
 
 //intoarce lista pasagerilor unui anumit zbor

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilete</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Client ID</th>
+            <th>Zbor ID</th>
+            <th>Pret</th>
+            <th>Data Achizitionare</th>
+            <th>Tip Bilet</th>
+            <th>Actiuni</th>
+
+        </tr>
+        </thead>
+        <tr th:each="bilet: ${bilete}">
+            <td th:text="${bilet.id_client}"></td>
+            <td th:text="${bilet.id_zbor}"></td>
+            <td th:text="${bilet.pret}"></td>
+            <td th:text="${bilet.data_achizitionare}"></td>
+            <td th:text="${bilet?.tipBilet?.denumire}"></td>
+            <td>
+                <a href="#" th:href="@{'/bilet/delete/'+${bilet.id_client}+'&'+${bilet.id_zbor}}">Sterge biletul</a>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/bilet/new'}">Adauga bilet nou</a>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avion Info</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<body>
+<form th:object="${bilet}" th:action="@{/bilet}" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h1 class="panel-title">Bilet INFO</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Client:</label>
+                            <select name="id_client">
+                                <option
+                                        th:each="client: ${clienti}"
+                                        th:value="${client.id_client}" th:text="${client.nume}+' '+${client.prenume}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Zbor:</label>
+                            <select name="id_zbor">
+                                <option
+                                        th:each="zbor: ${zboruri}"
+                                        th:value="${zbor.id}" th:text="${zbor.id}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Pret:</label>
+                        <input type="number" class="form-control" th:field="*{pret}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Data achizitionare:</label>
+                        <input type="date" class="form-control" th:field="*{data_achizitionare}"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Tip Bilet:</label>
+                            <select name="tipBilet">
+                                <option
+                                        th:each="tip_bilet: ${tipuri_bilet}"
+                                        th:value="${tip_bilet.id_tip_bilet}" th:text="${tip_bilet.denumire}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7 ml-md-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
