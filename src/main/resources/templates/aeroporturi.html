@@ -27,7 +27,7 @@
             <td th:text="${aeroport.denumire}"></td>
             <td th:text="${aeroport.an_constructie}"></td>
             <td th:text="${aeroport.capacitate}"></td>
-            <td th:text="${aeroport.adresa?.strada}"></td> <<!--add more when adresa is implemented-->>
+            <td th:text="${aeroport.adresa?.strada}"></td> <!--add more when adresa is implemented-->
             <td>
                 <a href="#" th:href="@{'/aeroport/delete/'+${aeroport.id_aeroport}}">Sterge aeroportul</a>
             </td>
