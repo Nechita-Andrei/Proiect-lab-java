@@ -13,6 +13,18 @@
     <table class="table table-hover ">
         <thead class="thead-inverse">
         <tr>
+            <th>Nume</th>
+            <th>Prenume</th>
+        </tr>
+        </thead>
+        <tr th:each="ceva1: ${ceva}">
+            <td th:text="${ceva1.nume}"></td>
+            <td th:text="${ceva1.prenume}"></td>
+        </tr>
+    </table>
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
             <th>ID</th>
             <th>Nume</th>
             <th>Prenume</th>

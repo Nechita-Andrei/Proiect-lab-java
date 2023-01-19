@@ -8,7 +8,7 @@ public class Judet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_JUDET")
-    @SequenceGenerator(name = "MY_GENERATOR_JUDET", sequenceName = "ID_JUDET")
+    @SequenceGenerator(name = "MY_GENERATOR_JUDET", sequenceName = "ID_JUDET", allocationSize = 1)
     private Integer id_judet;
 
     private String denumire;

@@ -13,7 +13,7 @@ public class Adresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ADRESA")
-    @SequenceGenerator(name = "MY_GENERATOR_ADRESA", sequenceName = "ID_ADRESA")
+    @SequenceGenerator(name = "MY_GENERATOR_ADRESA", sequenceName = "ID_ADRESA", allocationSize = 1)
     private Integer id_adresa;
     private String judet;
     private String localitate;

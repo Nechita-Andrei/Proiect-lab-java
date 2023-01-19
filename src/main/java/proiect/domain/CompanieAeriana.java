@@ -10,7 +10,7 @@ public class CompanieAeriana {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_COMPANIE")
-    @SequenceGenerator(name = "MY_GENERATOR_COMPANIE", sequenceName = "ID_COMPANIE_AERIANA")
+    @SequenceGenerator(name = "MY_GENERATOR_COMPANIE", sequenceName = "ID_COMPANIE_AERIANA", allocationSize = 1)
     private Integer id_companie_aeriana;
 
 

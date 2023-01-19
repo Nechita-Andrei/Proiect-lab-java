@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.domain.Contact;
 import proiect.domain.Pilot;
+import proiect.domain.PilotRaport;
 import proiect.repository.PilotRepo;
 
 import java.util.Optional;
@@ -24,6 +25,9 @@ public class PilotService {
             throw new Exception("no pilot found");
         }
         pilotRepo.delete(pilot.get());
+    }
+    public Iterable<PilotRaport> raport1(){
+        return pilotRepo.raport1();
     }
 
     public Iterable<Pilot> getPiloti() {

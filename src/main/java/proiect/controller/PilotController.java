@@ -32,6 +32,7 @@ public class PilotController {
         Iterable<Pilot> piloti = pilotService.getPiloti();
         ModelAndView modelAndView = new ModelAndView("piloti");
         modelAndView.addObject("piloti", piloti);
+        modelAndView.addObject("ceva", pilotService.raport1());
         return modelAndView;
 
     }

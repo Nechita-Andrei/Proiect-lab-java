@@ -10,7 +10,7 @@ public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR")
-    @SequenceGenerator(name = "MY_GENERATOR", sequenceName = "ID_CONTACT")
+    @SequenceGenerator(name = "MY_GENERATOR", sequenceName = "ID_CONTACT", allocationSize = 1)
     private int id_contact;
 
     @Column

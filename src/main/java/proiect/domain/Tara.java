@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Tara {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_TARA")
-    @SequenceGenerator(name = "MY_GENERATOR_TARA", sequenceName = "ID_TARA")
+    @SequenceGenerator(name = "MY_GENERATOR_TARA", sequenceName = "ID_TARA", allocationSize = 1)
     private Integer id_tara;
 
     private String denumire;

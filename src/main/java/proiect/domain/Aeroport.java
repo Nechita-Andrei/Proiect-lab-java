@@ -8,7 +8,7 @@ public class Aeroport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_AEROPORT")
-    @SequenceGenerator(name = "MY_GENERATOR_AEROPORT", sequenceName = "ID_AEROPORT")
+    @SequenceGenerator(name = "MY_GENERATOR_AEROPORT", sequenceName = "ID_AEROPORT", allocationSize = 1)
     private int id_aeroport;
 
     @Column(unique = true)

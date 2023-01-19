@@ -13,7 +13,7 @@ public class Zbor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ZBOR")
-    @SequenceGenerator(name = "MY_GENERATOR_ZBOR", sequenceName = "ID_ZBOR")
+    @SequenceGenerator(name = "MY_GENERATOR_ZBOR", sequenceName = "OLTP.ID_ZBOR", allocationSize = 1)
     @Column(name = "id_zbor")
     private Integer id;
 
