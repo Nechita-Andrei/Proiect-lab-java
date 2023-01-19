@@ -10,7 +10,7 @@ public class Pilot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_PILOT")
-    @SequenceGenerator(name = "MY_GENERATOR_PILOT", sequenceName = "ID_PILOT")
+    @SequenceGenerator(name = "MY_GENERATOR_PILOT", sequenceName = "ID_PILOT", allocationSize = 1)
     private int id_pilot;
 
 

@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Avion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_AVION")
-    @SequenceGenerator(name = "MY_GENERATOR_AVION", sequenceName = "ID_AVION")
+    @SequenceGenerator(name = "MY_GENERATOR_AVION", sequenceName = "ID_AVION", allocationSize = 1)
     private int id_avion;
 
 
