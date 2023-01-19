@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orase</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Denumire</th>
+            <th>Abreviere</th>
+            <th>Judet</th>
+            <th>Zona Covid</th>
+            <th>Actiuni</th>
+        </tr>
+        </thead>
+        <tr th:each="oras: ${orase}">
+            <td th:text="${oras.id_oras}"></td>
+            <td th:text="${oras.denumire}"></td>
+            <td th:text="${oras.abreviere}"></td>
+            <td th:text="${oras.judet.denumire}"></td>
+            <td th:text="${oras.zonaCovid.denumire}"></td>
+            <td> <a href="#" th:href="@{'/oras/delete/'+${oras.id_oras}}">Sterge oras</a> </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/judet/new'}">Adauga oras</a>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zona Covid Info</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<body>
+<form th:object="${zonaCovid}" th:action="@{/zonaCovid}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id_zona_covid}"/>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h1 class="panel-title">Zona Covid INFO</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Descriere:</label>
+                        <input type="text" class="form-control" th:field="*{descriere}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Zona:</label>
+                        <input type="text" class="form-control" th:field="*{zona}"/>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-7 ml-md-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</form>
+</body>
+</html>
