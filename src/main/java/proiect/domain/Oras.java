@@ -15,23 +15,63 @@ public class Oras {
     private Integer id_oras;
     @ManyToOne
     @JoinColumn(name = "id_judet")
-    private Integer id_judet;
+    private Judet judet;
     @ManyToOne
     @JoinColumn(name = "id_zona_covid")
-    private Integer id_zona_covid;
+    private ZonaCovid zona_covid;
     private String denumire;
     private String abreviere;
 
 
-    public Oras(Integer id_judet, Integer id_zona_covid, String denumire, String abreviere) {
-        this.id_judet = id_judet;
-        this.id_zona_covid = id_zona_covid;
+    public Oras(Integer id_oras, Judet judet, ZonaCovid zona_covid, String denumire, String abreviere) {
+        this.id_oras = id_oras;
+        this.judet = judet;
+        this.zona_covid = zona_covid;
         this.denumire = denumire;
-        this.abreviere=abreviere;
+        this.abreviere = abreviere;
     }
 
     public Oras() {
 
     }
 
+    public Integer getId_oras() {
+        return id_oras;
+    }
+
+    public void setId_oras(Integer id_oras) {
+        this.id_oras = id_oras;
+    }
+
+    public Judet getJudet() {
+        return judet;
+    }
+
+    public void setJudet(Judet judet) {
+        this.judet = judet;
+    }
+
+    public ZonaCovid getZona_covid() {
+        return zona_covid;
+    }
+
+    public void setZona_covid(ZonaCovid zona_covid) {
+        this.zona_covid = zona_covid;
+    }
+
+    public String getDenumire() {
+        return denumire;
+    }
+
+    public void setDenumire(String denumire) {
+        this.denumire = denumire;
+    }
+
+    public String getAbreviere() {
+        return abreviere;
+    }
+
+    public void setAbreviere(String abreviere) {
+        this.abreviere = abreviere;
+    }
 }
