@@ -52,8 +52,10 @@ public class Zbor {
     @Column(nullable = false)
     private Date data_sosire_estimata;
 
+    @Column
     private Date data_plecare_reala;
 
+    @Column
     private Date data_sosire_reala;
 
     public void addPasager(Client client){

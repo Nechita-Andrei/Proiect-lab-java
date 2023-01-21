@@ -12,10 +12,11 @@ public class TipBilet {
     @SequenceGenerator(name = "MY_GENERATOR_TIP_BILET", sequenceName = "ID_TIP_BILET", allocationSize = 1)
     private Integer id_tip_bilet;
 
+    @Column(unique = true, nullable = false)
     private String denumire;
 
+    @Column
     private String descriere;
-
 
     public TipBilet(){
 

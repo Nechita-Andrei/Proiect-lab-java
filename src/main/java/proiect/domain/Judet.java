@@ -11,8 +11,12 @@ public class Judet {
     @SequenceGenerator(name = "MY_GENERATOR_JUDET", sequenceName = "ID_JUDET", allocationSize = 1)
     private Integer id_judet;
 
+    @Column(unique = true, nullable = false)
     private String denumire;
+
+    @Column
     private String abreviere;
+
     @ManyToOne
     @JoinColumn(name = "id_tara")
     private Tara tara;

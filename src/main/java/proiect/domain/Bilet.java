@@ -14,26 +14,26 @@ public class Bilet {
     @Id
     private int id_zbor;
 
-    @Column
+    @Column(nullable = false)
     private float pret;
 
-    @Column
+    @Column(nullable = false)
     private Date data_achizitionare;
 
     @ManyToOne
     @JoinColumn(name = "id_tip_bilet",referencedColumnName = "id_tip_bilet")
-    private TipBilet tipBilet;
+    private TipBilet tip_bilet;
 
     public Bilet() {
 
     }
 
-    public Bilet(int id_client, int id_zbor, float pret, Date data_achizitionare, TipBilet tipBilet) {
+    public Bilet(int id_client, int id_zbor, float pret, Date data_achizitionare, TipBilet tip_bilet) {
         this.id_client = id_client;
         this.id_zbor = id_zbor;
         this.pret = pret;
         this.data_achizitionare = data_achizitionare;
-        this.tipBilet = tipBilet;
+        this.tip_bilet = tip_bilet;
     }
 
     public int getId_client() {
@@ -68,11 +68,11 @@ public class Bilet {
         this.data_achizitionare = data_achizitionare;
     }
 
-    public TipBilet getTipBilet() {
-        return tipBilet;
+    public TipBilet getTip_bilet() {
+        return tip_bilet;
     }
 
-    public void setTipBilet(TipBilet tipBilet) {
-        this.tipBilet = tipBilet;
+    public void setTip_bilet(TipBilet tipBilet) {
+        this.tip_bilet = tipBilet;
     }
 }

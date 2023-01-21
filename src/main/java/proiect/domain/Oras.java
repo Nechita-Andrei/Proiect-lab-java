@@ -13,13 +13,19 @@ public class Oras {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ORAS")
     @SequenceGenerator(name = "MY_GENERATOR_ORAS", sequenceName = "ID_ORAS")
     private Integer id_oras;
+
     @ManyToOne
     @JoinColumn(name = "id_judet")
     private Judet judet;
+
     @ManyToOne
     @JoinColumn(name = "id_zona_covid")
     private ZonaCovid zona_covid;
+
+    @Column(nullable = false)
     private String denumire;
+
+    @Column
     private String abreviere;
 
 

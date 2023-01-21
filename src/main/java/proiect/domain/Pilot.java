@@ -13,11 +13,18 @@ public class Pilot {
     @SequenceGenerator(name = "MY_GENERATOR_PILOT", sequenceName = "ID_PILOT", allocationSize = 1)
     private int id_pilot;
 
-
+    @Column(nullable = false)
     private String nume;
+
+    @Column(nullable = false)
     private String prenume;
+
+    @Column(nullable = false)
     private Date data_nasterii;
+
+    @Column
     private Date data_angajarii;
+
     @ManyToOne
     @JoinColumn(name = "id_companie_aeriana")
     private CompanieAeriana companieAerianaPilot;

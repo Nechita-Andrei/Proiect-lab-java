@@ -7,16 +7,17 @@ import javax.persistence.*;
 @Table(name = "CONTACT")
 public class Contact {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR")
     @SequenceGenerator(name = "MY_GENERATOR", sequenceName = "ID_CONTACT", allocationSize = 1)
     private int id_contact;
 
-    @Column
+    @Column(unique = true, nullable = false)
     private String email;
+
     @Column
     private String telefon;
+
     @Column
     private String website;
 

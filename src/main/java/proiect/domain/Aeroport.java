@@ -11,7 +11,7 @@ public class Aeroport {
     @SequenceGenerator(name = "MY_GENERATOR_AEROPORT", sequenceName = "ID_AEROPORT", allocationSize = 1)
     private int id_aeroport;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String denumire;
 
     @Column

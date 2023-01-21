@@ -10,8 +10,10 @@ public class Tara {
     @SequenceGenerator(name = "MY_GENERATOR_TARA", sequenceName = "ID_TARA", allocationSize = 1)
     private Integer id_tara;
 
+    @Column(unique = true, nullable = false)
     private String denumire;
 
+    @Column
     private String abreviere;
 
     public Tara(){

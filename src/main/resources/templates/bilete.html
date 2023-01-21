@@ -27,7 +27,7 @@
             <td th:text="${bilet.id_zbor}"></td>
             <td th:text="${bilet.pret}"></td>
             <td th:text="${bilet.data_achizitionare}"></td>
-            <td th:text="${bilet?.tipBilet?.denumire}"></td>
+            <td th:text="${bilet?.tip_bilet?.denumire}"></td>
             <td>
                 <a href="#" th:href="@{'/bilet/delete/'+${bilet.id_client}+'&'+${bilet.id_zbor}}">Sterge biletul</a>
             </td>

@@ -16,12 +16,11 @@ public class Client {
     @SequenceGenerator(name = "MY_GENERATOR_CLIENT", sequenceName = "ID_CLIENT", allocationSize = 1)
     private int id_client;
 
-
+    @Column(nullable = false)
     private String nume;
 
-
+    @Column(nullable = false)
     private String prenume;
-
 
     @Column
     private Date data_nasterii;

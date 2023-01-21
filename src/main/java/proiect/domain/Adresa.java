@@ -19,7 +19,11 @@ public class Adresa {
     @ManyToOne
     @JoinColumn(name = "id_oras")
     private Oras oras;
+
+    @Column
     private String cod_postal;
+
+    @Column(nullable = false)
     private String strada;
 
     public Adresa(Integer id_adresa, Oras oras, String cod_postal, String strada) {

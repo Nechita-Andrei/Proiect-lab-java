@@ -13,9 +13,10 @@ public class CompanieAeriana {
     @SequenceGenerator(name = "MY_GENERATOR_COMPANIE", sequenceName = "ID_COMPANIE_AERIANA", allocationSize = 1)
     private Integer id_companie_aeriana;
 
-
+    @Column(unique = true, nullable = false)
     private String denumire;
 
+    @Column
     private short anul_infiintarii;
 
     @OneToOne

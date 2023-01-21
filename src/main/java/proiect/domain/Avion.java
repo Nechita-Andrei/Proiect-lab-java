@@ -11,11 +11,15 @@ public class Avion {
     @SequenceGenerator(name = "MY_GENERATOR_AVION", sequenceName = "ID_AVION", allocationSize = 1)
     private int id_avion;
 
-
+    @Column(nullable = false)
     private String denumire;
+
+    @Column
     private short an_constructie;
 
+    @Column(nullable = false)
     private int capacitate;
+
     @ManyToOne
     @JoinColumn(name = "id_companie_aeriana")
     private CompanieAeriana companieAerianaAvion;
