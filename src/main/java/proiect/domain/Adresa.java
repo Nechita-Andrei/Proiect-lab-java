@@ -15,19 +15,53 @@ public class Adresa {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ADRESA")
     @SequenceGenerator(name = "MY_GENERATOR_ADRESA", sequenceName = "ID_ADRESA", allocationSize = 1)
     private Integer id_adresa;
-    private String judet;
-    private String localitate;
+
+    @ManyToOne
+    @JoinColumn(name = "id_oras")
+    private Oras oras;
+    private String cod_postal;
     private String strada;
 
-
-
-    public Adresa(String judet, String localitate, String strada) {
-        this.judet = judet;
-        this.localitate = localitate;
+    public Adresa(Integer id_adresa, Oras oras, String cod_postal, String strada) {
+        this.id_adresa = id_adresa;
+        this.oras = oras;
+        this.cod_postal = cod_postal;
         this.strada = strada;
     }
 
     public Adresa() {
 
+    }
+
+    public Integer getId_adresa() {
+        return id_adresa;
+    }
+
+    public void setId_adresa(Integer id_adresa) {
+        this.id_adresa = id_adresa;
+    }
+
+    public Oras getOras() {
+        return oras;
+    }
+
+    public void setOras(Oras oras) {
+        this.oras = oras;
+    }
+
+    public String getCod_postal() {
+        return cod_postal;
+    }
+
+    public void setCod_postal(String cod_postal) {
+        this.cod_postal = cod_postal;
+    }
+
+    public String getStrada() {
+        return strada;
+    }
+
+    public void setStrada(String strada) {
+        this.strada = strada;
     }
 }
