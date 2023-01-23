@@ -29,7 +29,7 @@ public class CompanieAerianaController {
 
     @GetMapping
     public ModelAndView getCompanii() {
-        Iterable<CompanieAeriana> companii = companieAerianaService.getCompaniiAeriana();
+        Iterable<CompanieAeriana> companii = companieAerianaService.getCompaniiAeriane();
         ModelAndView modelAndView = new ModelAndView("companii");
         modelAndView.addObject("companii", companii);
         return modelAndView;

@@ -2,14 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Avion Info</title>
+    <title>Zbor Info</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
 <body>
-<form th:action="@{/zbor}" method="post" enctype="multipart/form-data">
+<form th:object="${zbor}" th:action="@{/zbor}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id_zbor}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -53,61 +54,73 @@
                         </select>
                     </div>
                     <div class="col-md-3 form-group">
-                    <label>Avion:</label>
-                    <select id="avion" name="avion">
-                        <option
+                        <label>Copilot:</label>
+                        <select id="copilot" name="copilot">
+                            <option
 
-                                th:each="avion: ${avioane}"
-                                th:value="${avion.id_avion}" th:text="${avion.id_avion+' '+avion.an_constructie}">
+                                    th:each="pilot: ${piloti}"
+                                    th:value="${pilot.id_pilot}" th:text="${pilot.nume+' '+pilot.prenume}">
 
-                        </option>
-                    </select>
-<!--                </div>-->
-<!--                    <div class="col-md-3 form-group">-->
-<!--                    <label>Destinatie:</label>-->
-<!--                    <select id="destinatie" name="destinatie">-->
-<!--                        <option-->
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Avion:</label>
+                        <select id="avion" name="avion">
+                            <option
 
-<!--                                th:each="destinatie: ${destinatii}"-->
-<!--                                th:value="${destinatie.id}" th:text="${destinatie.tara+' '+destinatie.localitate+' '+destinatie.zona_covid}">-->
+                                    th:each="avion: ${avioane}"
+                                    th:value="${avion.id_avion}" th:text="${avion.denumire+' '+avion.an_constructie}">
 
-<!--                        </option>-->
-<!--                    </select>-->
-<!--                </div>-->
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Companie aeriana:</label>
+                        <select id="companie_aeriana" name="companie_aeriana">
+                            <option
+
+                                    th:each="companie_aeriana: ${companii_aeriane}"
+                                    th:value="${companie_aeriana.id_companie_aeriana}" th:text="${companie_aeriana.denumire+' '+companie_aeriana.anul_infiintarii}">
+
+                            </option>
+                        </select>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Data plecarii reala:</label>
+                            <input placeholder="Selecteaza data de plecare reala" type="text" id="data_plecare_reala"
+                                   name="data_plecare_reala" class="form-control datepicker">
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label>Data plecarii estimata:</label>
+                            <input placeholder="Selecteaza data de plecare estimata" type="text"
+                                   id="data_plecare_estimata" name="data_plecare_estimata"
+                                   class="form-control datepicker">
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label>Data sosirii reala:</label>
+                            <input placeholder="Selecteaza data de sosire reala" type="text" id="data_sosire_reala"
+                                   name="data_sosire_reala" class="form-control datepicker">
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label>Data sosirii estimata:</label>
+                            <input placeholder="Selecteaza data de sosire estimata" type="text"
+                                   id="data_sosire_estimata" name="data_sosire_estimata"
+                                   class="form-control datepicker">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-7 ml-md-auto">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-md-3 form-group">
-                        <label>Data plecarii:</label>
-                        <input placeholder="Selecteaza data de plecare" type="text" id="plecare" name="plecare" class="form-control datepicker">
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Data sosirii:</label>
-                        <input placeholder="Selecteaza data de sosire" type="text" id="sosire" name="sosire" class="form-control datepicker2">
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Pret:</label>
-                        <input type="text" id="pret" name="pret" class="form-control">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 form-group">
-                        <label>Username:</label>
-                        <input type="text" class="form-control" id="user.name" name="user.name">
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Parola:</label>
-                        <input type="password" class="form-control" id="user.parola" name="user.parola">
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-7 ml-md-auto">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -117,9 +130,6 @@
 
 <script>
     $(".datepicker").datepicker({
-        dateFormat:'yy-mm-dd',
-    });
-    $(".datepicker2").datepicker({
-        dateFormat:'yy-mm-dd',
+        dateFormat: 'yy-mm-dd',
     });
 </script>

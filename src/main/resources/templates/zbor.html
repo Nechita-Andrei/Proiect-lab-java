@@ -35,7 +35,7 @@
         </tr>
         </thead>
         <tr th:each="zbor: ${zboruri}">
-            <td th:text="${zbor.id}"></td>
+            <td th:text="${zbor.id_zbor}"></td>
             <td th:text="${zbor.data_plecare}"></td>
             <td th:text="${zbor.plecare.denumire}" ></td>
             <td th:text="${zbor.data_sosire}"></td>
@@ -45,7 +45,7 @@
             <td th:text="${zbor.avion.model}"></td>
             <td th:text="${zbor.pret}"></td>
             <td th:text="${zbor.delay+' minute'}"></td>
-            <td><a href="#" th:href="@{'/bilet/pasageri/' + ${zbor.id}}">Lista pasageri</a></td>
+            <td><a href="#" th:href="@{'/bilet/pasageri/' + ${zbor.id_zbor}}">Lista pasageri</a></td>
         </tr>
     </table>
     <div th:if="${zboruri.totalPages > 0}" class="pagination" >

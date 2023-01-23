@@ -22,61 +22,24 @@ public class ZborService {
     @Autowired
     private ZborRepo zborRepo;
 
-    @Autowired
-    private AeroportRepo aeroportRepo;
+    public Zbor addZbor(Zbor zbor){
+        return zborRepo.save(zbor);
+    }
+    public void deleteZbor(Integer zbor_id) throws Exception {
+        Optional<Zbor> zbor=zborRepo.findById(zbor_id);
+        if(!zbor.isPresent()) {
+            throw new Exception("no zbor found");
+        }
+        zborRepo.delete(zbor.get());
+    }
 
-    @Autowired
-    private AvionRepo avionRepo;
-
-    @Autowired
-    private PilotRepo pilotRepo;
-
-    @Autowired
-    private ClientRepo clientRepo;
-
-    public Iterable<Zbor> getAllZboruri() {
+    public Iterable<Zbor> getZboruri() {
         return zborRepo.findAll();
     }
 
-    public Iterable<Aeroport> getAllAeroporturi() {
-        return aeroportRepo.findAll();
-    }
-
-    public Iterable<Avion> getAllAvioane() {
-        return avionRepo.findAll();
-    }
-
-    public Iterable<Pilot> getAllPiloti() {
-        return pilotRepo.findAll();
-    }
 
 
-    //functie care verifica credentialele date de user
 
-
-    public Page<Zbor> findPaginated(Pageable pageable, String column) {
-        log.info("se apeleaza paginarea pentru pagina: " + pageable.getPageNumber());
-        List<Zbor> zboruri;
-        if (column == "idasc") {
-            zboruri = (List<Zbor>) zborRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
-        } else {
-            zboruri = (List<Zbor>) zborRepo.findAll(Sort.by(Sort.Direction.DESC, column));
-        }
-        int pageSize = pageable.getPageSize();
-        int currentPage = pageable.getPageNumber();
-        int startItem = currentPage * pageSize;
-        List<Zbor> list;
-        if (zboruri.size() < startItem) {
-            list = Collections.emptyList();
-        } else {
-            int toIndex = Math.min(startItem + pageSize, zboruri.size());
-            list = zboruri.subList(startItem, toIndex);
-        }
-        Page<Zbor> zborPage
-                = new PageImpl<Zbor>(list, PageRequest.of(currentPage,
-                pageSize), zboruri.size());
-        return zborPage;
-    }
 
 
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zboruri</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Aeroport plecare</th>
+            <th>Aerport sosire</th>
+            <th>Avion</th>
+            <th>Companie aeriana</th>
+            <th>Pilot</th>
+            <th>Copilot</th>
+            <th>Data plecare reala</th>
+            <th>Data plecare estimata</th>
+            <th>Data sosire reala</th>
+            <th>Data sosire estimata</th>
+            <th>Actiuni</th>
+
+        </tr>
+        </thead>
+        <tr th:each="zbor: ${zboruri}">
+            <td th:text="${zbor.id_zbor}"></td>
+            <td th:text="${zbor.aeroport_plecare.denumire}"></td>
+            <td th:text="${zbor.aeroport_sosire.denumire}"></td>
+            <td th:text="${zbor.avion.denumire}"></td>
+            <td th:text="${zbor.companie_aeriana.denumire}"></td>
+            <td th:text="${zbor.pilot.nume+' '+zbor.pilot.prenume}"></td>
+            <td th:text="${zbor.copilot.nume +' '+zbor.copilot.prenume}"></td>
+            <td th:text="${zbor.data_plecare_reala}"></td>
+            <td th:text="${zbor.data_plecare_estimata}"></td>
+            <td th:text="${zbor.data_sosire_reala}"></td>
+            <td th:text="${zbor.data_sosire_estimata}"></td>
+            <td><a href="#" th:href="@{'/zbor/delete/'+${zbor.id_zbor}}">Sterge zbor</a></td>
+        </tr>
+    </table>
+
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/zbor/new'}">Adauga zbor</a>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

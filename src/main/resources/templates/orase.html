@@ -26,7 +26,7 @@
             <td th:text="${oras.denumire}"></td>
             <td th:text="${oras.abreviere}"></td>
             <td th:text="${oras.judet.denumire}"></td>
-            <td th:text="${oras.zonaCovid.denumire}"></td>
+            <td th:text="${oras.zona_covid.descriere}"></td>
             <td> <a href="#" th:href="@{'/oras/delete/'+${oras.id_oras}}">Sterge oras</a> </td>
         </tr>
     </table>
@@ -35,7 +35,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <a class="btn btn-primary" role="button" th:href="@{'/judet/new'}">Adauga oras</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/oras/new'}">Adauga oras</a>
         </div>
     </div>
 </div>

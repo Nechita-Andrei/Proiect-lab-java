@@ -1,11 +1,9 @@
 package proiect.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Set;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "ZBOR")
@@ -15,12 +13,12 @@ public class Zbor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ZBOR")
     @SequenceGenerator(name = "MY_GENERATOR_ZBOR", sequenceName = "OLTP.ID_ZBOR", allocationSize = 1)
     @Column(name = "id_zbor")
-    private Integer id;
+    private Integer id_zbor;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinTable(name = "bilet", joinColumns = @JoinColumn(name = "id_zbor"), inverseJoinColumns = @JoinColumn(name = "id_client"))
-    private Set<Client> pasageri;
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinTable(name = "bilet", joinColumns = @JoinColumn(name = "id_zbor"), inverseJoinColumns = @JoinColumn(name = "id_client"))
+//    private Set<Client> pasageri;
 
     @ManyToOne
     @JoinColumn(name = "id_aeroport_plecare",referencedColumnName = "id_aeroport")
@@ -47,24 +45,20 @@ public class Zbor {
     private Avion avion;
 
     @Column(nullable = false)
-    private Date data_plecare_estimata;
+    private Timestamp data_plecare_estimata;
 
     @Column(nullable = false)
-    private Date data_sosire_estimata;
+    private Timestamp data_sosire_estimata;
 
     @Column
-    private Date data_plecare_reala;
+    private Timestamp data_plecare_reala;
 
     @Column
-    private Date data_sosire_reala;
+    private Timestamp data_sosire_reala;
 
-    public void addPasager(Client client){
-        pasageri.add(client);
-    }
 
-    public Zbor(Integer id, Set<Client> pasageri, Aeroport aeroport_plecare, Aeroport aeroport_sosire, Pilot pilot, Pilot copilot, CompanieAeriana companie_aeriana, Avion avion, Date data_plecare_estimata, Date data_sosire_estimata, Date data_plecare_reala, Date data_sosire_reala) {
-        this.id = id;
-        this.pasageri = pasageri;
+    public Zbor(Integer id_zbor, Aeroport aeroport_plecare, Aeroport aeroport_sosire, Pilot pilot, Pilot copilot, CompanieAeriana companie_aeriana, Avion avion, Timestamp data_plecare_estimata, Timestamp data_sosire_estimata, Timestamp data_plecare_reala, Timestamp data_sosire_reala) {
+        this.id_zbor = id_zbor;
         this.aeroport_plecare = aeroport_plecare;
         this.aeroport_sosire = aeroport_sosire;
         this.pilot = pilot;
@@ -80,21 +74,14 @@ public class Zbor {
     public Zbor() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_zbor() {
+        return id_zbor;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_zbor(Integer id_zbor) {
+        this.id_zbor = id_zbor;
     }
 
-    public Set<Client> getPasageri() {
-        return pasageri;
-    }
-
-    public void setPasageri(Set<Client> pasageri) {
-        this.pasageri = pasageri;
-    }
 
     public Aeroport getAeroport_plecare() {
         return aeroport_plecare;
@@ -144,35 +131,52 @@ public class Zbor {
         this.avion = avion;
     }
 
-    public Date getData_plecare_estimata() {
+    public Timestamp getData_plecare_estimata() {
         return data_plecare_estimata;
     }
 
-    public void setData_plecare_estimata(Date data_plecare_estimata) {
+    public void setData_plecare_estimata(Timestamp data_plecare_estimata) {
         this.data_plecare_estimata = data_plecare_estimata;
     }
 
-    public Date getData_sosire_estimata() {
+    public Timestamp getData_sosire_estimata() {
         return data_sosire_estimata;
     }
 
-    public void setData_sosire_estimata(Date data_sosire_estimata) {
+    public void setData_sosire_estimata(Timestamp data_sosire_estimata) {
         this.data_sosire_estimata = data_sosire_estimata;
     }
 
-    public Date getData_plecare_reala() {
+    public Timestamp getData_plecare_reala() {
         return data_plecare_reala;
     }
 
-    public void setData_plecare_reala(Date data_plecare_reala) {
+    public void setData_plecare_reala(Timestamp data_plecare_reala) {
         this.data_plecare_reala = data_plecare_reala;
     }
 
-    public Date getData_sosire_reala() {
+    public Timestamp getData_sosire_reala() {
         return data_sosire_reala;
     }
 
-    public void setData_sosire_reala(Date data_sosire_reala) {
+    public void setData_sosire_reala(Timestamp data_sosire_reala) {
         this.data_sosire_reala = data_sosire_reala;
+    }
+
+    @Override
+    public String toString() {
+        return "Zbor{" +
+                "id=" + id_zbor +
+                ", aeroport_plecare=" + aeroport_plecare +
+                ", aeroport_sosire=" + aeroport_sosire +
+                ", pilot=" + pilot +
+                ", copilot=" + copilot +
+                ", companie_aeriana=" + companie_aeriana +
+                ", avion=" + avion +
+                ", data_plecare_estimata=" + data_plecare_estimata +
+                ", data_sosire_estimata=" + data_sosire_estimata +
+                ", data_plecare_reala=" + data_plecare_reala +
+                ", data_sosire_reala=" + data_sosire_reala +
+                '}';
     }
 }

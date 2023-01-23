@@ -38,7 +38,10 @@
 
 <div class="container">
     <div class="row">
-
+        <div class="col-md-3 form-group">
+            <label>Suma raportata:</label>
+            <input type="text" readonly th:value="${suma.suma}"/>
+        </div>
         <div class="col-md-6">
             <a class="btn btn-primary" role="button" th:href="@{'/bilet/new'}">Adauga bilet nou</a>
         </div>

@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <body>
-<form th:object="${adresa}" th:action="@{/client/adresa}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id}"/>
+<form th:object="${adresa}" th:action="@{/adresa}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id_adresa}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -16,21 +16,27 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3 form-group">
-                        <label>Judet:</label>
-                        <input type="text" class="form-control" th:field="*{judet}"/>
-                    </div>
-                    <div class="col-md-3 form-group">
-                        <label>Localitate:</label>
-                        <input type="text" class="form-control" th:field="*{localitate}"/>
+                        <label>Cod postal:</label>
+                        <input type="text" class="form-control" th:field="*{cod_postal}"/>
                     </div>
                     <div class="col-md-3 form-group">
                         <label>Strada:</label>
                         <input type="text" class="form-control" th:field="*{strada}"/>
                     </div>
+                    <div class="row">
+                        <div class="col-md-3 form-group">
+                            <label>Oras:</label>
+                            <select name="oras">
+                                <option
+
+                                        th:each="oras: ${orase}"
+                                        th:value="${oras.id_oras}" th:text="${oras.denumire}">
+
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-
-
-
                 <div class="row">
                     <div class="col-md-7 ml-md-auto">
                         <button type="submit" class="btn btn-primary">Submit</button>

@@ -90,8 +90,7 @@ public class CompanieAeriana {
                 ", denumire='" + denumire + '\'' +
                 ", anul_infiintarii=" + anul_infiintarii +
                 ", contact=" + contact +
-                ", piloti=" + piloti +
-                ", avioane=" + avioane +
+
                 '}';
     }
 }

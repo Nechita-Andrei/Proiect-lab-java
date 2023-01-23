@@ -31,7 +31,7 @@
                             <select name="id_zbor">
                                 <option
                                         th:each="zbor: ${zboruri}"
-                                        th:value="${zbor.id}" th:text="${zbor.id}">
+                                        th:value="${zbor.id_zbor}" th:text="${zbor.id_zbor}">
                                 </option>
                             </select>
                         </div>
@@ -47,7 +47,7 @@
                     <div class="row">
                         <div class="col-md-3 form-group">
                             <label>Tip Bilet:</label>
-                            <select name="tipBilet">
+                            <select name="tip_bilet">
                                 <option
                                         th:each="tip_bilet: ${tipuri_bilet}"
                                         th:value="${tip_bilet.id_tip_bilet}" th:text="${tip_bilet.denumire}">

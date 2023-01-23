@@ -35,7 +35,7 @@ public class SecurityJdbcConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/zbor/pilot/new").hasRole("ADMIN")
                 .antMatchers("/zbor/destinatie/new").hasRole("ADMIN")
                 .antMatchers("/zbor/delay/new").hasRole("ADMIN")
-                .antMatchers("/zbor/new").hasRole("ADMIN").and()
+                 .and()
                 .formLogin().loginPage("/showLogInForm")
                 .loginProcessingUrl("/authUser")
                 .failureUrl("/login-error").permitAll()

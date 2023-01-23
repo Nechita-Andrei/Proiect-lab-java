@@ -5,10 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import proiect.domain.Bilet;
-import proiect.domain.BiletId;
-import proiect.domain.Client;
-import proiect.domain.Zbor;
+import proiect.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.repository.BiletRepo;
@@ -44,16 +41,13 @@ public class BiletService {
     public Iterable<Bilet> getBilete() {
         return biletRepo.findAll();
     }
+    public SumaBileteVanduteAn raport() {
+        return biletRepo.raport();
+    }
 
 
 //intoarce lista pasagerilor unui anumit zbor
-    public Set<Client> getPasageri(int idZbor){
-        Optional <Zbor> zbor=zborRepo.findById(idZbor);
-        if(!zbor.isPresent()){
-            throw ZborException.zborNotFound();
-        }
-        return zbor.get().getPasageri();
-    }
+
 
 
     public Page<Zbor> findPaginatedFiltered(Pageable pageable, Date date, String localitate) {

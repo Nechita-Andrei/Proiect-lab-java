@@ -47,6 +47,7 @@ public class BiletController {
         Iterable<Bilet> bilete = biletService.getBilete();
         ModelAndView modelAndView = new ModelAndView("bilete");
         modelAndView.addObject("bilete", bilete);
+        modelAndView.addObject("suma", biletService.raport());
         return modelAndView;
     }
 
@@ -60,38 +61,8 @@ public class BiletController {
         ModelAndView modelAndView = new ModelAndView("biletForm");
         modelAndView.addObject("tipuri_bilet", tipBiletService.getTipuriBilet());
         modelAndView.addObject("clienti", clientService.getClienti());
-        modelAndView.addObject("zboruri", zborService.getAllZboruri());
+        modelAndView.addObject("zboruri", zborService.getZboruri());
         modelAndView.addObject("bilet", new Bilet());
-        return modelAndView;
-    }
-
-
-    @GetMapping(path = "/pasageri/{zbor_id}")
-    public ModelAndView getPasageri(@PathVariable("zbor_id") int zborId){
-            Set<Client> pasageri= biletService.getPasageri(zborId);
-            ModelAndView modelAndView=new ModelAndView("pasageri");
-            modelAndView.addObject("pasageri",pasageri);
-            log.info("s-au afisat pasagerii pentru zborul: "+zborId);
-            return modelAndView;
-    }
-
-
-
-
-
-
-    @RequestMapping(path = "/filtrare")
-    public ModelAndView filtreazaZboruri(@RequestParam("page") Optional<Integer> page,@RequestParam("filtrare_plecare") String plecare, @RequestParam ("filtrare_localitate") String localitate){
-
-        if(plecare=="" || localitate==""){
-            return new ModelAndView("redirect:/zbor");
-        }
-        ModelAndView modelAndView=new ModelAndView("zbor");
-        int currentPage=page.orElse(1);
-        int pageSize = 5;
-
-        Page<Zbor> zborPage=biletService.findPaginatedFiltered(PageRequest.of(currentPage-1,pageSize),Date.valueOf(plecare),localitate);
-        modelAndView.addObject("zboruri",zborPage);
         return modelAndView;
     }
 

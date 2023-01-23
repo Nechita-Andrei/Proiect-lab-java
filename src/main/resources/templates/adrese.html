@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Aeroporturi</title>
+    <title>Adrese</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
@@ -14,22 +14,18 @@
         <thead class="thead-inverse">
         <tr>
             <th>ID</th>
-            <th>Denumire</th>
-            <th>An_constructie</th>
-            <th>Capacitate</th>
+            <th>Cod postal</th>
             <th>Strada</th>
-            <th>Actiuni</th>
-
+            <th>Oras</th>
         </tr>
         </thead>
-        <tr th:each="aeroport: ${aeroporturi}">
-            <td th:text="${aeroport.id_aeroport}"></td>
-            <td th:text="${aeroport.denumire}"></td>
-            <td th:text="${aeroport.an_constructie}"></td>
-            <td th:text="${aeroport.capacitate}"></td>
-            <td th:text="${aeroport.adresa.strada}"></td>
+        <tr th:each="adresa: ${adrese}">
+            <td th:text="${adresa.id_adresa}"></td>
+            <td th:text="${adresa.cod_postal}"></td>
+            <td th:text="${adresa.strada}"></td>
+            <td th:text="${adresa.oras.denumire}"></td>
             <td>
-                <a href="#" th:href="@{'/aeroport/delete/'+${aeroport.id_aeroport}}">Sterge aeroportul</a>
+                <a href="#" th:href="@{'/adresa/delete/'+${adresa.id_adresa}}">Sterge adresa</a>
             </td>
 
         </tr>
@@ -40,7 +36,7 @@
     <div class="row">
 
         <div class="col-md-6">
-            <a class="btn btn-primary" role="button" th:href="@{'/aeroport/new'}">Adauga aeroport nou</a>
+            <a class="btn btn-primary" role="button" th:href="@{'/adresa/new'}">Adauga adresa noua</a>
         </div>
 
     </div>

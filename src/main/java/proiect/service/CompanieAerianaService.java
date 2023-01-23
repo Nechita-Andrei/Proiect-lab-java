@@ -26,7 +26,7 @@ public class CompanieAerianaService {
         companieAerianaRepo.delete(companieAeriana.get());
     }
 
-    public Iterable<CompanieAeriana> getCompaniiAeriana() {
+    public Iterable<CompanieAeriana> getCompaniiAeriane() {
         return companieAerianaRepo.findAll();
     }
 }

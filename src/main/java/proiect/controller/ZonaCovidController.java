@@ -19,14 +19,14 @@ public class ZonaCovidController {
     public ModelAndView addZonaCovid(@ModelAttribute ZonaCovid zonaCovid) {
         ZonaCovid zonaCovid_res=zonaCovidService.addZonaCovid(zonaCovid);
         log.info("s-a adaugat cu succes o zona covid: "+zonaCovid_res.toString());
-        return new ModelAndView("redirect:/zona covid");
+        return new ModelAndView("redirect:/zonaCovid");
     }
 
     @GetMapping
     public ModelAndView getZoneCovid() {
         Iterable<ZonaCovid> zoneCovid = zonaCovidService.getZoneCovid();
-        ModelAndView modelAndView = new ModelAndView("zone covid");
-        modelAndView.addObject("zone covid", zoneCovid);
+        ModelAndView modelAndView = new ModelAndView("zoneCovid");
+        modelAndView.addObject("zoneCovid", zoneCovid);
         return modelAndView;
 
     }
@@ -34,12 +34,12 @@ public class ZonaCovidController {
     @RequestMapping("/delete/{id_zona_covid}")
     public ModelAndView deleteZonaCovid(@PathVariable("id_zona_covid") int id_zona_covid) throws Exception {
         zonaCovidService.deleteZonaCovid(id_zona_covid);
-        return new ModelAndView("redirect:/zona covid");
+        return new ModelAndView("redirect:/zonaCovid");
     }
     @RequestMapping("/new")
     public ModelAndView newZonaCovid() {
         ModelAndView modelAndView = new ModelAndView("zonaCovidForm");
-        modelAndView.addObject("zona covid", new ZonaCovid());
+        modelAndView.addObject("zonaCovid", new ZonaCovid());
         return modelAndView;
     }
 

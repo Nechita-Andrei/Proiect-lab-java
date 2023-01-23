@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import proiect.domain.Aeroport;
+import proiect.service.AdresaService;
 import proiect.service.AeroportService;
 import proiect.service.CompanieAerianaService;
 
@@ -15,8 +16,8 @@ public class AeroportController {
     @Autowired
     private AeroportService aeroportService;
 
-//    @Autowired
-//    private AdresaService adresaService; // uncomment when AdresaService exists
+    @Autowired
+    private AdresaService adresaService;
 
 
     @PostMapping
@@ -42,7 +43,7 @@ public class AeroportController {
     @RequestMapping("/new")
     public ModelAndView newAeroport() {
         ModelAndView modelAndView = new ModelAndView("aeroportForm");
-//        modelAndView.addObject("adresa", adresaService.getAdresa()); // uncomment when AdresaService exists
+        modelAndView.addObject("adrese", adresaService.getAdrese());
         modelAndView.addObject("aeroport", new Aeroport());
         return modelAndView;
     }

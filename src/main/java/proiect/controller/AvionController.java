@@ -43,7 +43,7 @@ public class AvionController {
     @RequestMapping("/new")
     public ModelAndView newAvion() {
         ModelAndView modelAndView = new ModelAndView("avionForm");
-        modelAndView.addObject("companii", companieAerianaService.getCompaniiAeriana());
+        modelAndView.addObject("companii", companieAerianaService.getCompaniiAeriane());
         modelAndView.addObject("avion", new Avion());
         return modelAndView;
     }

@@ -11,6 +11,5 @@ import java.util.List;
 
 @Repository
 public interface ZborRepo extends CrudRepository<Zbor,Integer> {
-        Iterable<Zbor> findAll(Sort sort);
 
 }

@@ -51,7 +51,7 @@ public class OrasController {
         ModelAndView modelAndView = new ModelAndView("orasForm");
         modelAndView.addObject("oras", new Oras());
         modelAndView.addObject("judete", judetService.getJudete());
-        modelAndView.addObject("zone covid", zonaCovidService.getZoneCovid());
+        modelAndView.addObject("zoneCovid", zonaCovidService.getZoneCovid());
         return modelAndView;
     }
 }

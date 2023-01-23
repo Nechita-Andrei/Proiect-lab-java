@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import proiect.domain.Contact;
 import proiect.domain.Pilot;
 import proiect.service.CompanieAerianaService;
 import proiect.service.PilotService;
@@ -45,7 +44,7 @@ public class PilotController {
     @RequestMapping("/new")
     public ModelAndView newPilot() {
         ModelAndView modelAndView = new ModelAndView("pilotForm");
-        modelAndView.addObject("companii", companieAerianaService.getCompaniiAeriana());
+        modelAndView.addObject("companii", companieAerianaService.getCompaniiAeriane());
         modelAndView.addObject("pilot", new Pilot());
         return modelAndView;
     }
