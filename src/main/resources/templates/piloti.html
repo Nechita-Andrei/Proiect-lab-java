@@ -10,18 +10,19 @@
 </head>
 <body>
 <div class="container">
-    <table class="table table-hover ">
-        <thead class="thead-inverse">
-        <tr>
-            <th>Nume</th>
-            <th>Prenume</th>
-        </tr>
-        </thead>
-        <tr th:each="ceva1: ${ceva}">
-            <td th:text="${ceva1.nume}"></td>
-            <td th:text="${ceva1.prenume}"></td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="pilot1" th:text="'Cel mai activ pilot in anul: '+${pilot1.an}"/>
+            <input id="pilot1" type="text" readonly th:value="${pilot1.pilot}"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/pilot/new'}">Adauga pilot</a>
+        </div>
+    </div>
+</div>
+<div class="container">
     <table class="table table-hover ">
         <thead class="thead-inverse">
         <tr>
@@ -46,13 +47,7 @@
     </table>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <a class="btn btn-primary" role="button" th:href="@{'/pilot/new'}">Adauga pilot</a>
-        </div>
-    </div>
-</div>
+
 
 
 

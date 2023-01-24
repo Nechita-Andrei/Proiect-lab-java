@@ -41,8 +41,8 @@ public class BiletService {
     public Iterable<Bilet> getBilete() {
         return biletRepo.findAll();
     }
-    public SumaBileteVanduteAn raport() {
-        return biletRepo.raport();
+    public SumaBileteVanduteAn raport1() {
+        return biletRepo.raport1();
     }
 
 

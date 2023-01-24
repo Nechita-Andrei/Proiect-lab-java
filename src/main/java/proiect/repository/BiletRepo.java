@@ -7,9 +7,6 @@ import proiect.domain.Bilet;
 import proiect.domain.BiletId;
 import proiect.domain.SumaBileteVanduteAn;
 
-import java.util.List;
-import java.util.Optional;
-
 @Repository
 public interface BiletRepo extends CrudRepository<Bilet,BiletId> {
     @Query(value = "select NVL(max(valoare_cumulata),0) as suma from(\n" +
@@ -24,5 +21,5 @@ public interface BiletRepo extends CrudRepository<Bilet,BiletId> {
             "       WHERE  v.id_data_achizitionarii=t.id_timp\n" +
             "       AND    t.an = 2022\n" +
             "       GROUP BY t.id_timp))", nativeQuery = true)
-    SumaBileteVanduteAn raport();
+    SumaBileteVanduteAn raport1();
 }

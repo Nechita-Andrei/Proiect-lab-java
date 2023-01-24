@@ -26,8 +26,8 @@ public class PilotService {
         }
         pilotRepo.delete(pilot.get());
     }
-    public Iterable<PilotRaport> raport1(){
-        return pilotRepo.raport1();
+    public PilotRaport raport2(){
+        return pilotRepo.raport2();
     }
 
     public Iterable<Pilot> getPiloti() {

@@ -43,11 +43,11 @@ public class BiletController {
     }
 
     @GetMapping
-    public ModelAndView getBileturi() {
+    public ModelAndView getBilete() {
         Iterable<Bilet> bilete = biletService.getBilete();
         ModelAndView modelAndView = new ModelAndView("bilete");
         modelAndView.addObject("bilete", bilete);
-        modelAndView.addObject("suma", biletService.raport());
+        modelAndView.addObject("suma", biletService.raport1());
         return modelAndView;
     }
 
