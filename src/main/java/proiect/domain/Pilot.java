@@ -9,9 +9,10 @@ import java.sql.Date;
 public class Pilot {
 
     @Id
+    @Column(name = "id_pilot")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_PILOT")
     @SequenceGenerator(name = "MY_GENERATOR_PILOT", sequenceName = "ID_PILOT", allocationSize = 1)
-    private int id_pilot;
+    private int idPilot;
 
     @Column(nullable = false)
     private String nume;
@@ -82,14 +83,14 @@ public class Pilot {
         this.companieAerianaPilot = companieAerianaPilot;
     }
 
-    public int getId_pilot() {
-        return id_pilot;
+    public int getIdPilot() {
+        return idPilot;
     }
 
     @Override
     public String toString() {
         return "Pilot{" +
-                "id_pilot=" + id_pilot +
+                "id_pilot=" + idPilot +
                 ", nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", data_nasterii=" + data_nasterii +

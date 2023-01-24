@@ -1,6 +1,7 @@
 package proiect.repository;
 
 import org.springframework.data.jpa.repository.Query;
+import proiect.domain.Bilet;
 import proiect.domain.Pilot;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -24,4 +25,6 @@ public interface PilotRepo extends CrudRepository<Pilot,Integer> {
             "       GROUP BY  p.nume, p.prenume, t.an)\n" +
             "       where rang=1", nativeQuery = true)
     PilotRaport raport2();
+
+    List<Pilot> findTop100ByOrderByIdPilotDesc();
 }

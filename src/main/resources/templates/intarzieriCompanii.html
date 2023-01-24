@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Intarzieri companii '"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+
+</head>
+<body>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Loc</th>
+            <th>Companie</th>
+            <th>Intarziere</th>
+            <th>An</th>
+
+        </tr>
+        <tr th:each="companie: ${intarzieri}">
+            <td th:text="${companie.rang}"></td>
+            <td th:text="${companie.companie}"></td>
+            <td th:text="${companie.intarziere}"></td>
+            <td th:text="${companie.an}"></td>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/companie'}">Inapoi la pagina de companii</a>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>

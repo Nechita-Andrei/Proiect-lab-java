@@ -28,6 +28,6 @@ public class ContactService {
     }
 
     public Iterable<Contact> getContacte() {
-        return contactRepo.findAll();
+        return contactRepo.findTop100ByOrderByIdContactDesc();
     }
 }

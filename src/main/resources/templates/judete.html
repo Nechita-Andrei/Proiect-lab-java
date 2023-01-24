@@ -21,11 +21,11 @@
         </tr>
         </thead>
         <tr th:each="judet: ${judete}">
-            <td th:text="${judet.id_judet}"></td>
+            <td th:text="${judet.idJudet}"></td>
             <td th:text="${judet.denumire}"></td>
             <td th:text="${judet.abreviere}"></td>
             <td th:text="${judet.tara.denumire}"></td>
-            <td> <a href="#" th:href="@{'/judet/delete/'+${judet.id_judet}}">Sterge judet</a> </td>
+            <td> <a href="#" th:href="@{'/judet/delete/'+${judet.idJudet}}">Sterge judet</a> </td>
         </tr>
     </table>
 </div>

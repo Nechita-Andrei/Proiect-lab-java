@@ -51,6 +51,13 @@ public class BiletController {
         return modelAndView;
     }
 
+    @RequestMapping("vanzari")
+    public ModelAndView vanzariBilet(){
+        ModelAndView modelAndView= new ModelAndView("vanzariBilete");
+        modelAndView.addObject("vanzari", biletService.raport4());
+        return modelAndView;
+    }
+
     @RequestMapping("/delete/{id_client}&{id_zbor}")
     public ModelAndView deleteBilet(@PathVariable("id_client") int id_client, @PathVariable("id_zbor") int id_zbor) throws Exception {
         biletService.deleteBilet(id_client, id_zbor);

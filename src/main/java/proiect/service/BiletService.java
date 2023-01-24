@@ -39,10 +39,14 @@ public class BiletService {
     }
 
     public Iterable<Bilet> getBilete() {
-        return biletRepo.findAll();
+        return biletRepo.findTop100ByOrderByPretDesc();
     }
     public SumaBileteVanduteAn raport1() {
         return biletRepo.raport1();
+    }
+
+    public Iterable<EvolutieRaport> raport4(){
+        return biletRepo.raport4();
     }
 
 

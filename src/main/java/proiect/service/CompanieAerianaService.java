@@ -4,6 +4,7 @@ package proiect.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.domain.CompanieAeriana;
+import proiect.domain.IntarzieriCompanii;
 import proiect.repository.CompanieAerianaRepo;
 
 import java.util.Optional;
@@ -27,6 +28,10 @@ public class CompanieAerianaService {
     }
 
     public Iterable<CompanieAeriana> getCompaniiAeriane() {
-        return companieAerianaRepo.findAll();
+        return companieAerianaRepo.findTop100ByOrderByIdCompanieAerianaDesc();
+    }
+
+    public  Iterable<IntarzieriCompanii>raport5(){
+        return companieAerianaRepo.raport5();
     }
 }

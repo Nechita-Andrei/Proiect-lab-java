@@ -20,12 +20,12 @@
         </tr>
         </thead>
         <tr th:each="adresa: ${adrese}">
-            <td th:text="${adresa.id_adresa}"></td>
+            <td th:text="${adresa.idAdresa}"></td>
             <td th:text="${adresa.cod_postal}"></td>
             <td th:text="${adresa.strada}"></td>
             <td th:text="${adresa.oras.denumire}"></td>
             <td>
-                <a href="#" th:href="@{'/adresa/delete/'+${adresa.id_adresa}}">Sterge adresa</a>
+                <a href="#" th:href="@{'/adresa/delete/'+${adresa.idAdresa}}">Sterge adresa</a>
             </td>
 
         </tr>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
 <body>
 <form th:object="${zbor}" th:action="@{/zbor}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id_zbor}"/>
+    <input type="hidden" th:field="*{idZbor}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -24,7 +24,7 @@
                             <option
 
                                     th:each="aeroport: ${aeroporturi}"
-                                    th:value="${aeroport.id_aeroport}" th:text="${aeroport.denumire}">
+                                    th:value="${aeroport.idAeroport}" th:text="${aeroport.denumire}">
 
                             </option>
                         </select>
@@ -35,7 +35,7 @@
                             <option
 
                                     th:each="aeroport: ${aeroporturi}"
-                                    th:value="${aeroport.id_aeroport}" th:text="${aeroport.denumire}">
+                                    th:value="${aeroport.idAeroport}" th:text="${aeroport.denumire}">
 
                             </option>
                         </select>
@@ -48,7 +48,7 @@
                             <option
 
                                     th:each="pilot: ${piloti}"
-                                    th:value="${pilot.id_pilot}" th:text="${pilot.nume+' '+pilot.prenume}">
+                                    th:value="${pilot.idPilot}" th:text="${pilot.nume+' '+pilot.prenume}">
 
                             </option>
                         </select>
@@ -59,7 +59,7 @@
                             <option
 
                                     th:each="pilot: ${piloti}"
-                                    th:value="${pilot.id_pilot}" th:text="${pilot.nume+' '+pilot.prenume}">
+                                    th:value="${pilot.idPilot}" th:text="${pilot.nume+' '+pilot.prenume}">
 
                             </option>
                         </select>
@@ -70,7 +70,7 @@
                             <option
 
                                     th:each="avion: ${avioane}"
-                                    th:value="${avion.id_avion}" th:text="${avion.denumire+' '+avion.an_constructie}">
+                                    th:value="${avion.idAvion}" th:text="${avion.denumire+' '+avion.an_constructie}">
 
                             </option>
                         </select>

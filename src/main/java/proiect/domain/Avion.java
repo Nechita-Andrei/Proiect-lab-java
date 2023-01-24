@@ -7,9 +7,10 @@ import javax.persistence.*;
 @Table(name = "AVION")
 public class Avion {
     @Id
+    @Column(name = "id_avion")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_AVION")
     @SequenceGenerator(name = "MY_GENERATOR_AVION", sequenceName = "ID_AVION", allocationSize = 1)
-    private int id_avion;
+    private int idAvion;
 
     @Column(nullable = false)
     private String denumire;
@@ -35,8 +36,8 @@ public class Avion {
         this.companieAerianaAvion = companieAerianaAvion;
     }
 
-    public int getId_avion() {
-        return id_avion;
+    public int getIdAvion() {
+        return idAvion;
     }
 
     public String getDenumire() {
@@ -74,7 +75,7 @@ public class Avion {
     @Override
     public String toString() {
         return "Avion{" +
-                "id_avion=" + id_avion +
+                "id_avion=" + idAvion +
                 ", denumire='" + denumire + '\'' +
                 ", an_constructie=" + an_constructie +
                 ", capacitate=" + capacitate +

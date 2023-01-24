@@ -21,11 +21,11 @@
         </tr>
         </thead>
         <tr th:each="contact: ${contacte}">
-            <td th:text="${contact.id_contact}"></td>
+            <td th:text="${contact.idContact}"></td>
             <td th:text="${contact.email}"></td>
             <td th:text="${contact.telefon}"></td>
             <td th:text="${contact.website}"></td>
-            <td> <a href="#" th:href="@{'/contact/delete/'+${contact.id_contact}}">Sterge contact</a> </td>
+            <td> <a href="#" th:href="@{'/contact/delete/'+${contact.idContact}}">Sterge contact</a> </td>
         </tr>
     </table>
 </div>

@@ -25,6 +25,6 @@ public class AvionService {
     }
 
     public Iterable<Avion> getAvioane() {
-        return avionRepo.findAll();
+        return avionRepo.findTop100ByOrderByIdAvionDesc();
     }
 }

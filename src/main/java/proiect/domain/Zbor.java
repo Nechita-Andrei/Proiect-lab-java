@@ -2,7 +2,6 @@ package proiect.domain;
 
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Entity
@@ -13,7 +12,7 @@ public class Zbor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ZBOR")
     @SequenceGenerator(name = "MY_GENERATOR_ZBOR", sequenceName = "OLTP.ID_ZBOR", allocationSize = 1)
     @Column(name = "id_zbor")
-    private Integer id_zbor;
+    private Integer idZbor;
 
 //    @ManyToMany(fetch = FetchType.LAZY)
 //    @JsonIgnore
@@ -57,8 +56,8 @@ public class Zbor {
     private Timestamp data_sosire_reala;
 
 
-    public Zbor(Integer id_zbor, Aeroport aeroport_plecare, Aeroport aeroport_sosire, Pilot pilot, Pilot copilot, CompanieAeriana companie_aeriana, Avion avion, Timestamp data_plecare_estimata, Timestamp data_sosire_estimata, Timestamp data_plecare_reala, Timestamp data_sosire_reala) {
-        this.id_zbor = id_zbor;
+    public Zbor(Integer idZbor, Aeroport aeroport_plecare, Aeroport aeroport_sosire, Pilot pilot, Pilot copilot, CompanieAeriana companie_aeriana, Avion avion, Timestamp data_plecare_estimata, Timestamp data_sosire_estimata, Timestamp data_plecare_reala, Timestamp data_sosire_reala) {
+        this.idZbor = idZbor;
         this.aeroport_plecare = aeroport_plecare;
         this.aeroport_sosire = aeroport_sosire;
         this.pilot = pilot;
@@ -74,12 +73,12 @@ public class Zbor {
     public Zbor() {
     }
 
-    public Integer getId_zbor() {
-        return id_zbor;
+    public Integer getIdZbor() {
+        return idZbor;
     }
 
-    public void setId_zbor(Integer id_zbor) {
-        this.id_zbor = id_zbor;
+    public void setIdZbor(Integer idZbor) {
+        this.idZbor = idZbor;
     }
 
 
@@ -166,7 +165,7 @@ public class Zbor {
     @Override
     public String toString() {
         return "Zbor{" +
-                "id=" + id_zbor +
+                "id=" + idZbor +
                 ", aeroport_plecare=" + aeroport_plecare +
                 ", aeroport_sosire=" + aeroport_sosire +
                 ", pilot=" + pilot +

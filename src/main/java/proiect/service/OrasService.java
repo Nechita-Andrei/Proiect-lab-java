@@ -27,7 +27,7 @@ public class OrasService {
     }
 
     public Iterable<Oras> getOrase() {
-        return orasRepo.findAll();
+        return orasRepo.findTop100ByOrderByIdOrasDesc();
     }
 
 }

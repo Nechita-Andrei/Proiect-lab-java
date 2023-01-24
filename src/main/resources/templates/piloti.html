@@ -36,13 +36,13 @@
         </tr>
         </thead>
         <tr th:each="pilot: ${piloti}">
-            <td th:text="${pilot.id_pilot}"></td>
+            <td th:text="${pilot.idPilot}"></td>
             <td th:text="${pilot.nume}"></td>
             <td th:text="${pilot.prenume}"></td>
             <td th:text="${pilot.data_nasterii}"></td>
             <td th:text="${pilot.data_angajarii}"></td>
             <td th:text="${pilot.companieAerianaPilot.denumire}"></td>
-            <td> <a href="#" th:href="@{'/pilot/delete/'+${pilot.id_pilot}}">Sterge pilot</a> </td>
+            <td> <a href="#" th:href="@{'/pilot/delete/'+${pilot.idPilot}}">Sterge pilot</a> </td>
         </tr>
     </table>
 </div>

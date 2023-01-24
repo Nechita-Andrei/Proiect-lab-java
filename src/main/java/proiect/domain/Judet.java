@@ -7,9 +7,10 @@ import javax.persistence.*;
 public class Judet {
 
     @Id
+    @Column(name = "id_judet")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_JUDET")
     @SequenceGenerator(name = "MY_GENERATOR_JUDET", sequenceName = "ID_JUDET", allocationSize = 1)
-    private Integer id_judet;
+    private Integer idJudet;
 
     @Column(unique = true, nullable = false)
     private String denumire;
@@ -30,8 +31,8 @@ public class Judet {
         this.tara = tara;
     }
 
-    public Integer getId_judet() {
-        return id_judet;
+    public Integer getIdJudet() {
+        return idJudet;
     }
 
 
@@ -62,7 +63,7 @@ public class Judet {
     @Override
     public String toString() {
         return "Judet{" +
-                "id_judet=" + id_judet +
+                "id_judet=" + idJudet +
                 ", denumire='" + denumire + '\'' +
                 ", abreviere='" + abreviere + '\'' +
                 ", tara=" + tara +

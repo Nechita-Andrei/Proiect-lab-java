@@ -9,9 +9,10 @@ import java.util.Set;
 public class CompanieAeriana {
 
     @Id
+    @Column(name = "id_companie_aeriana")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_COMPANIE")
     @SequenceGenerator(name = "MY_GENERATOR_COMPANIE", sequenceName = "ID_COMPANIE_AERIANA", allocationSize = 1)
-    private Integer id_companie_aeriana;
+    private Integer idCompanieAeriana;
 
     @Column(unique = true, nullable = false)
     private String denumire;
@@ -72,7 +73,7 @@ public class CompanieAeriana {
     }
 
     public Integer getId_companie_aeriana() {
-        return id_companie_aeriana;
+        return idCompanieAeriana;
     }
 
     public Set<Avion> getAvioane() {
@@ -86,7 +87,7 @@ public class CompanieAeriana {
     @Override
     public String toString() {
         return "CompanieAeriana{" +
-                "id_companie_aeriana=" + id_companie_aeriana +
+                "id_companie_aeriana=" + idCompanieAeriana +
                 ", denumire='" + denumire + '\'' +
                 ", anul_infiintarii=" + anul_infiintarii +
                 ", contact=" + contact +

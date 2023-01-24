@@ -23,13 +23,13 @@
         </tr>
         </thead>
         <tr th:each="aeroport: ${aeroporturi}">
-            <td th:text="${aeroport.id_aeroport}"></td>
+            <td th:text="${aeroport.idAeroport}"></td>
             <td th:text="${aeroport.denumire}"></td>
             <td th:text="${aeroport.an_constructie}"></td>
             <td th:text="${aeroport.capacitate}"></td>
             <td th:text="${aeroport.adresa.strada}"></td>
             <td>
-                <a href="#" th:href="@{'/aeroport/delete/'+${aeroport.id_aeroport}}">Sterge aeroportul</a>
+                <a href="#" th:href="@{'/aeroport/delete/'+${aeroport.idAeroport}}">Sterge aeroportul</a>
             </td>
 
         </tr>

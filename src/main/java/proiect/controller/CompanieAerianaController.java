@@ -35,6 +35,12 @@ public class CompanieAerianaController {
         return modelAndView;
 
     }
+    @RequestMapping("/intarzieri")
+    public ModelAndView getIntarzieriCompanii(){
+        ModelAndView modelAndView= new ModelAndView("intarzieriCompanii");
+        modelAndView.addObject("intarzieri",companieAerianaService.raport5());
+        return modelAndView;
+    }
 
     @RequestMapping("/delete/{id_companie_aeriana}")
     public ModelAndView deleteCompanieAeriana(@PathVariable("id_companie_aeriana") int id_companie_aeriana) throws Exception {

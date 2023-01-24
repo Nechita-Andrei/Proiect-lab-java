@@ -26,6 +26,6 @@ public class JudetService {
     }
 
     public Iterable<Judet> getJudete() {
-        return judetRepo.findAll();
+        return judetRepo.findTop100ByOrderByIdJudetDesc();
     }
 }

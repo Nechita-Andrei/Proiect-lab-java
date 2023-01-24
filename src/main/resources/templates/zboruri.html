@@ -29,7 +29,7 @@
         </tr>
         </thead>
         <tr th:each="zbor: ${zboruri}">
-            <td th:text="${zbor.id_zbor}"></td>
+            <td th:text="${zbor.idZbor}"></td>
             <td th:text="${zbor.aeroport_plecare.denumire}"></td>
             <td th:text="${zbor.aeroport_sosire.denumire}"></td>
             <td th:text="${zbor.avion.denumire}"></td>
@@ -40,7 +40,7 @@
             <td th:text="${zbor.data_plecare_estimata}"></td>
             <td th:text="${zbor.data_sosire_reala}"></td>
             <td th:text="${zbor.data_sosire_estimata}"></td>
-            <td><a href="#" th:href="@{'/zbor/delete/'+${zbor.id_zbor}}">Sterge zbor</a></td>
+            <td><a href="#" th:href="@{'/zbor/delete/'+${zbor.idZbor}}">Sterge zbor</a></td>
         </tr>
     </table>
 

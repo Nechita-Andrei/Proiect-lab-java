@@ -7,7 +7,7 @@
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <body>
 <form th:object="${aeroport}" th:action="@{/aeroport}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id_aeroport}"/>
+    <input type="hidden" th:field="*{idAeroport}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -30,7 +30,7 @@
                                 <option
 
                                         th:each="adresa: ${adrese}"
-                                        th:value="${adresa.id_adresa}" th:text="${adresa.strada}">
+                                        th:value="${adresa.idAdresa}" th:text="${adresa.strada}">
 
                                 </option>
                             </select>

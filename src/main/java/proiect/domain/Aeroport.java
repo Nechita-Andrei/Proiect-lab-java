@@ -7,9 +7,10 @@ import javax.persistence.*;
 public class Aeroport {
 
     @Id
+    @Column(name = "id_aeroport")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_AEROPORT")
     @SequenceGenerator(name = "MY_GENERATOR_AEROPORT", sequenceName = "ID_AEROPORT", allocationSize = 1)
-    private int id_aeroport;
+    private int idAeroport;
 
     @Column(unique = true, nullable = false)
     private String denumire;
@@ -28,12 +29,12 @@ public class Aeroport {
 
     }
 
-    public int getId_aeroport() {
-        return id_aeroport;
+    public int getIdAeroport() {
+        return idAeroport;
     }
 
-    public void setId_aeroport(int id_aeroport) {
-        this.id_aeroport = id_aeroport;
+    public void setIdAeroport(int idAeroport) {
+        this.idAeroport = idAeroport;
     }
 
     public String getDenumire() {
@@ -68,8 +69,8 @@ public class Aeroport {
         this.adresa = adresa;
     }
 
-    public Aeroport(int id_aeroport, String denumire, int an_constructie, int capacitate, Adresa adresa) {
-        this.id_aeroport = id_aeroport;
+    public Aeroport(int idAeroport, String denumire, int an_constructie, int capacitate, Adresa adresa) {
+        this.idAeroport = idAeroport;
         this.denumire = denumire;
         this.an_constructie = an_constructie;
         this.capacitate = capacitate;

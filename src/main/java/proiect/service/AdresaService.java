@@ -26,6 +26,6 @@ public class AdresaService {
     }
 
     public Iterable<Adresa> getAdrese() {
-        return adresaRepo.findAll();
+        return adresaRepo.findTop100ByOrderByIdAdresaDesc();
     }
 }

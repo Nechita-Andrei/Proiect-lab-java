@@ -8,9 +8,10 @@ import javax.persistence.*;
 public class Contact {
 
     @Id
+    @Column(name = "id_contact")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR")
     @SequenceGenerator(name = "MY_GENERATOR", sequenceName = "ID_CONTACT", allocationSize = 1)
-    private int id_contact;
+    private int idContact;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -35,19 +36,19 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact{" +
-                "id_contact=" + id_contact +
+                "id_contact=" + idContact +
                 ", email='" + email + '\'' +
                 ", telefon='" + telefon + '\'' +
                 ", website='" + website + '\'' +
                 '}';
     }
 
-    public int getId_contact() {
-        return id_contact;
+    public int getIdContact() {
+        return idContact;
     }
 
-    public void setId_contact(int id_contact) {
-        this.id_contact = id_contact;
+    public void setIdContact(int idContact) {
+        this.idContact = idContact;
     }
 
     public String getEmail() {

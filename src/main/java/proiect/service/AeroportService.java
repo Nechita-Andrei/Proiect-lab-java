@@ -25,6 +25,6 @@ public class AeroportService {
     }
 
     public Iterable<Aeroport> getAeroporturi() {
-        return aeroportRepo.findAll();
+        return aeroportRepo.findTop100ByOrderByIdAeroportDesc();
     }
 }

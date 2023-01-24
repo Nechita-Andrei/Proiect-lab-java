@@ -31,6 +31,6 @@ public class PilotService {
     }
 
     public Iterable<Pilot> getPiloti() {
-        return pilotRepo.findAll();
+        return pilotRepo.findTop100ByOrderByIdPilotDesc();
     }
 }

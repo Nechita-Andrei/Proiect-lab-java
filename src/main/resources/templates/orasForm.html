@@ -7,7 +7,7 @@
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <body>
 <form th:object="${oras}" th:action="@{/oras}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id_oras}"/>
+    <input type="hidden" th:field="*{idOras}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -31,7 +31,7 @@
                             <option
 
                                     th:each="judet: ${judete}"
-                                    th:value="${judet.id_judet}" th:text="${judet.abreviere+'->'+judet.denumire}">
+                                    th:value="${judet.idJudet}" th:text="${judet.abreviere+'->'+judet.denumire}">
 
                             </option>
                         </select>

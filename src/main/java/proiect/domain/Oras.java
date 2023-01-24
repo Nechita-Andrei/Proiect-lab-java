@@ -10,9 +10,10 @@ import javax.persistence.*;
 public class Oras {
 
     @Id
+    @Column(name = "id_oras")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_ORAS")
     @SequenceGenerator(name = "MY_GENERATOR_ORAS", sequenceName = "ID_ORAS")
-    private Integer id_oras;
+    private Integer idOras;
 
     @ManyToOne
     @JoinColumn(name = "id_judet")
@@ -29,8 +30,8 @@ public class Oras {
     private String abreviere;
 
 
-    public Oras(Integer id_oras, Judet judet, ZonaCovid zona_covid, String denumire, String abreviere) {
-        this.id_oras = id_oras;
+    public Oras(Integer idOras, Judet judet, ZonaCovid zona_covid, String denumire, String abreviere) {
+        this.idOras = idOras;
         this.judet = judet;
         this.zona_covid = zona_covid;
         this.denumire = denumire;
@@ -41,12 +42,12 @@ public class Oras {
 
     }
 
-    public Integer getId_oras() {
-        return id_oras;
+    public Integer getIdOras() {
+        return idOras;
     }
 
-    public void setId_oras(Integer id_oras) {
-        this.id_oras = id_oras;
+    public void setIdOras(Integer idOras) {
+        this.idOras = idOras;
     }
 
     public Judet getJudet() {

@@ -34,7 +34,7 @@ public class ZborService {
     }
 
     public Iterable<Zbor> getZboruri() {
-        return zborRepo.findAll();
+        return zborRepo.findTop100ByOrderByIdZborDesc();
     }
 
 

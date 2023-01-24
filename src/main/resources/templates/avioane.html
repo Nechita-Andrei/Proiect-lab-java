@@ -22,12 +22,12 @@
         </tr>
         </thead>
         <tr th:each="avion: ${avioane}">
-            <td th:text="${avion.id_avion}"></td>
+            <td th:text="${avion.idAvion}"></td>
             <td th:text="${avion.denumire}"></td>
             <td th:text="${avion.an_constructie}"></td>
             <td th:text="${avion.capacitate}"></td>
             <td th:text="${avion.companieAerianaAvion.denumire}"></td>
-            <td> <a href="#" th:href="@{'/avion/delete/'+${avion.id_avion}}">Sterge avion</a> </td>
+            <td> <a href="#" th:href="@{'/avion/delete/'+${avion.idAvion}}">Sterge avion</a> </td>
         </tr>
     </table>
 </div>
