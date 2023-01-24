@@ -12,9 +12,10 @@ import java.util.Set;
 public class Client {
 
     @Id
+    @Column(name = "id_client")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MY_GENERATOR_CLIENT")
     @SequenceGenerator(name = "MY_GENERATOR_CLIENT", sequenceName = "ID_CLIENT", allocationSize = 1)
-    private int id_client;
+    private int idClient;
 
     @Column(nullable = false)
     private String nume;
@@ -83,7 +84,7 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "id_client=" + id_client +
+                "id_client=" + idClient +
                 ", nume='" + nume + '\'' +
                 ", prenume='" + prenume + '\'' +
                 ", data_nasterii=" + data_nasterii +
@@ -92,16 +93,10 @@ public class Client {
     }
 
     public int getId_client() {
-        return id_client;
+        return idClient;
     }
 
 
-//    public void setZboruri(Set<Zbor> zboruri) {
-//        this.zboruri = zboruri;
-//    }
-//
-//    public void addZbor(Zbor zbor){
-//        zboruri.add(zbor);
-//    }
+
 
 }

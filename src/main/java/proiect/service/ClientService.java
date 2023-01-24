@@ -4,7 +4,7 @@ package proiect.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import proiect.domain.Client;
-import proiect.domain.Pilot;
+import proiect.domain.ClientRaport;
 import proiect.repository.ClientRepo;
 
 import java.util.Optional;
@@ -27,6 +27,10 @@ public class ClientService {
     }
 
     public Iterable<Client> getClienti() {
-        return clientRepo.findAll();
+        return clientRepo.findTop100ByOrderByIdClientDesc();
+    }
+
+    public Iterable<ClientRaport> raport3(Integer client_id){
+        return clientRepo.raport3(client_id);
     }
 }

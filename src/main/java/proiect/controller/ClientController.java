@@ -33,6 +33,7 @@ public class ClientController {
         Iterable<Client> clienti = clientService.getClienti();
         ModelAndView modelAndView = new ModelAndView("clienti");
         modelAndView.addObject("clienti", clienti);
+        modelAndView.addObject("vanzari", clientService.raport3(1));
         return modelAndView;
 
     }
@@ -41,6 +42,13 @@ public class ClientController {
     public ModelAndView deleteClient(@PathVariable("id_client") int id_client) throws Exception {
         clientService.deleteClient(id_client);
         return new ModelAndView("redirect:/client");
+    }
+
+    @RequestMapping("/vanzari/{id_client}")
+    public ModelAndView getVanzariClient(@PathVariable("id_client") int id_client) throws Exception {
+        ModelAndView modelAndView=new ModelAndView("clientBilete");
+        modelAndView.addObject("vanzari", clientService.raport3(id_client));
+        return modelAndView;
     }
     @RequestMapping("/new")
     public ModelAndView newClient() {

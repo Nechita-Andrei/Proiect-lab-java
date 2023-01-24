@@ -32,6 +32,7 @@
             <td th:text="${client.contact.telefon}"></td>
             <td>
                 <a href="#" th:href="@{'/client/delete/'+${client.id_client}}">Sterge clientul</a>
+                <a href="#" th:href="@{'/client/vanzari/'+${client.id_client}}">Verifica raport anual(2022)</a>
             </td>
 
         </tr>
