@@ -1,10 +1,10 @@
 create sequence dw.id_avion start with 1;
 create table dw.avion(
-    id_avion number(5,0) default dw.id_avion.nextval not null enable,
-    denumire varchar2(50),
-    capacitate number(4,0),
-    an_constructie number(4,0),
-    id_companie_aeriana number(5),
+    id_avion number(10,0) default dw.id_avion.nextval not null enable,
+    denumire varchar2(255),
+    capacitate number(10,0),
+    an_constructie number(5,0),
+    id_companie_aeriana number(10),
     constraint companie_aeriana_fk foreign key(id_companie_aeriana) references dw.companie_aeriana(id_companie_aeriana),
     constraint avion_pk primary key(id_avion)
  
@@ -12,23 +12,23 @@ create table dw.avion(
 
 create sequence dw.id_companie_aeriana start with 1;
 create table dw.companie_aeriana(
-    id_companie_aeriana number(5,0) default dw.id_companie_aeriana.nextval not null enable,
-    denumire varchar2(50),
+    id_companie_aeriana number(10,0) default dw.id_companie_aeriana.nextval not null enable,
+    denumire varchar2(255),
     vechime number(3),
-    email varchar2(20),
+    email varchar2(255),
     telefon varchar2(10),
-    website varchar2(20),
-    constraint companie_aeriana_pk primary key(id_companie_aeriana)
+    website varchar2(255),
+    constraint companie_aeriana_pk primary key(id_companie_aeriana)SELECT * FROM DW.PILOT;
 );
 
 create sequence dw.id_pilot start with 1;
 create table dw.pilot(
-    id_pilot number(5,0) default dw.id_pilot.nextval not null enable,
-    prenume varchar2(20),
-    nume varchar2(20),
+    id_pilot number(10,0) default dw.id_pilot.nextval not null enable,
+    prenume varchar2(255),
+    nume varchar2(255),
     varsta number(3,0),
     experienta varchar2(10),
-    id_companie_aeriana number(5),
+    id_companie_aeriana number(10),
     constraint companie_aeriana_pilot_fk foreign key(id_companie_aeriana) references dw.companie_aeriana(id_companie_aeriana),
     constraint pilot_pk primary key(id_pilot)
  
@@ -36,20 +36,20 @@ create table dw.pilot(
 
 create sequence dw.id_tip_bilet start with 1;
 create table dw.tip_bilet(
-    id_tip_bilet number(5) default dw.id_tip_bilet.nextval not null enable,
-    denumire varchar2(50),
-    descriere varchar2(50),
+    id_tip_bilet number(10) default dw.id_tip_bilet.nextval not null enable,
+    denumire varchar2(255),
+    descriere varchar2(255),
     constraint tip_bilet_pk primary key(id_tip_bilet)
 );
 
 create sequence dw.id_client start with 1;
 create table dw.client(
-    id_client number(5,0) default dw.id_client.nextval not null enable,
-    prenume varchar2(20),
-    nume varchar2(20),
+    id_client number(10,0) default dw.id_client.nextval not null enable,
+    prenume varchar2(255),
+    nume varchar2(255),
     cnp varchar2(13),
     varsta number(3,0),
-    email varchar2(30),
+    email varchar2(255),
     telefon varchar2(10),
     constraint client_pk primary key(id_client)
  
@@ -57,14 +57,14 @@ create table dw.client(
 
 create sequence dw.id_aeroport start with 1;
 create table dw.aeroport(
-    id_aeroport number(5,0) default dw.id_aeroport.nextval not null enable,
-    denumire varchar2(50),
-    capacitate number(4,0),
-    an_constructie number(4,0),
-    tara varchar2(20),
-    judet varchar2(20),
-    oras varchar2(20),
-    strada varchar2(30),
+    id_aeroport number(10,0) default dw.id_aeroport.nextval not null enable,
+    denumire varchar2(255),
+    capacitate number(10,0),
+    an_constructie number(10,0),
+    tara varchar2(255),
+    judet varchar2(255),
+    oras varchar2(255),
+    strada varchar2(255),
     cod_postal varchar2(10),
     constraint aeroport_pk primary key(id_aeroport)
  
@@ -119,17 +119,17 @@ insert into dw.timp(an,luna,zi,ora)
 
 create sequence dw.id_zbor start with 1;
 create table dw.zbor(
-    id_zbor number(5,0) default dw.id_zbor.nextval not null,
-    durata_zbor number(3),
-    intarziere number(3),
-    id_avion number(5,0) not null,
-    id_pilot number(5,0) not null,
-    id_copilot number(5,0) not null,
-    id_aeroport_plecare number(5,0) not null,
-    id_aeroport_sosire number(5,0) not null,
-    id_companie_aeriana number(5,0) not null,
-    id_data_plecare number(5,0) not null,
-    id_data_sosire number(5,0) not null,
+    id_zbor number(10,0) default dw.id_zbor.nextval not null,
+    durata_zbor number(10),
+    intarziere number(10),
+    id_avion number(10,0) not null,
+    id_pilot number(10,0) not null,
+    id_copilot number(10,0) not null,
+    id_aeroport_plecare number(10,0) not null,
+    id_aeroport_sosire number(10,0) not null,
+    id_companie_aeriana number(10,0) not null,
+    id_data_plecare number(10,0) not null,
+    id_data_sosire number(10,0) not null,
     constraint zbor_pk primary key(id_zbor),
     constraint avion_fk FOREIGN key(id_avion) REFERENCES dw.avion(id_avion),
     constraint pilot_fk FOREIGN key(id_pilot) REFERENCES dw.pilot(id_pilot),
@@ -143,11 +143,11 @@ create table dw.zbor(
 );
 
 create  table  dw.bilet(
-     id_zbor number(5,0) not null,
-     id_client number(5,0) not null,
-     pret number(5,2) not null,
+     id_zbor number(10,0) not null,
+     id_client number(10,0) not null,
+     pret float not null,
      id_data_achizitionarii number(5,0)not null,
-     id_tip_bilet number(5,0),
+     id_tip_bilet number(10,0),
      constraint bilet_pk  primary key(id_zbor, id_client),
      constraint zbor_fk foreign key(id_zbor) REFERENCES dw.zbor(id_zbor),
      constraint client_fk foreign key(id_client) REFERENCES dw.client(id_client),
@@ -156,4 +156,10 @@ create  table  dw.bilet(
 ); 
 
 
-      
+
+  ALTER TABLE OLTP.AEROPORT
+  ADD  constraint zona_covid_aeroport_fk foreign key(id_zona_covid) references oltp.zona_covid(id_zona_covid)
+
+   ALTER TABLE DW.AEROPORT
+  ADD  constraint zona_covid_aeroport_fk foreign key(id_zona_covid) references dw.zona_covid(id_zona_covid)
+
