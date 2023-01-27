@@ -66,6 +66,7 @@ create table dw.aeroport(
     oras varchar2(255),
     strada varchar2(255),
     cod_postal varchar2(10),
+    zona_covid varchar2(255),
     constraint aeroport_pk primary key(id_aeroport)
  
 );
@@ -156,10 +157,4 @@ create  table  dw.bilet(
 ); 
 
 
-
-  ALTER TABLE OLTP.AEROPORT
-  ADD  constraint zona_covid_aeroport_fk foreign key(id_zona_covid) references oltp.zona_covid(id_zona_covid)
-
-   ALTER TABLE DW.AEROPORT
-  ADD  constraint zona_covid_aeroport_fk foreign key(id_zona_covid) references dw.zona_covid(id_zona_covid)
 
