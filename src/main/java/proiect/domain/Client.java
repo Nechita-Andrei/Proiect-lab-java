@@ -27,7 +27,7 @@ public class Client {
     private Date data_nasterii;
 
     @OneToOne
-    @JoinColumn(name = "id_contact", referencedColumnName = "id_contact")
+    @JoinColumn(unique = true, name = "id_contact", referencedColumnName = "id_contact")
     private Contact contact;
 
 
