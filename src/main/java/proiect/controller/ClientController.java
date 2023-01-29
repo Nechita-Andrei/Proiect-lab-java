@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import proiect.domain.Client;
+import proiect.domain.Contact;
 import proiect.service.ClientService;
 import proiect.service.ContactService;
 
@@ -22,7 +23,10 @@ public class ClientController {
 
 
     @PostMapping
-    public ModelAndView addClient(@ModelAttribute Client client) {
+    public ModelAndView addClient(@ModelAttribute Client client, @ModelAttribute Contact contact) {
+
+        Contact contact1= contactService.addContact(contact);
+        client.setContact(contact1);
         Client client_res= clientService.addClient(client);
         log.info("s-a adaugat cu succes un client nou: "+client_res.toString());
         return new ModelAndView("redirect:/client");
@@ -54,7 +58,7 @@ public class ClientController {
     public ModelAndView newClient() {
         ModelAndView modelAndView = new ModelAndView("clientForm");
         modelAndView.addObject("client", new Client());
-        modelAndView.addObject("contacte", contactService.getContacte());
+        modelAndView.addObject("contact", new Contact());
         return modelAndView;
     }
 

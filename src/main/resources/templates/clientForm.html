@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <body>
-<form th:object="${client}" th:action="@{/client}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:field="*{id_client}"/>
+<form th:action="@{/client}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{client.id_client}"/>
+    <input type="hidden" th:field="*{contact.idContact}"/>
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading" style="background-color:lightgray;">
@@ -17,28 +18,34 @@
                 <div class="row">
                     <div class="col-md-3 form-group">
                         <label>Nume:</label>
-                        <input type="text" class="form-control" th:field="*{nume}"/>
+                        <input type="text" class="form-control" th:field="*{client.nume}"/>
                     </div>
                     <div class="col-md-3 form-group">
                         <label>Prenume:</label>
-                        <input type="text" class="form-control" th:field="*{prenume}"/>
+                        <input type="text" class="form-control" th:field="*{client.prenume}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Cnp:</label>
+                        <input type="text" class="form-control" th:field="*{client.cnp}"/>
                     </div>
                     <div class="col-md-3 form-group">
                         <label>Data nasterii:</label>
-                        <input type="date" class="form-control" th:field="*{data_nasterii}"/>
+                        <input type="date" class="form-control" th:field="*{client.data_nasterii}"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 form-group">
-                        <label>Contact:</label>
-                        <select name="contact">
-                            <option
-
-                                    th:each="contact: ${contacte}"
-                                    th:value="${contact.idContact}" th:text="${contact.email+' '+contact.website}">
-
-                            </option>
-                        </select>
+                        <label>Telefon:</label>
+                        <input type="text" class="form-control" th:field="*{contact.telefon}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Email:</label>
+                        <input type="text" class="form-control" th:field="*{contact.email}"/>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label>Website:</label>
+                        <input type="text" class="form-control" th:field="*{contact.website}"/>
+                    </div>
                     </div>
                 </div>
             </div>
