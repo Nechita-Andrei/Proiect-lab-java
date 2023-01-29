@@ -11,15 +11,16 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-md-3 form-group">
+        <div class="col-md-6">
             <label>Suma raportata:</label>
-            <input type="text" readonly th:value="${suma.suma}"/>
+            <span th:text="${suma.suma}+' RON'"></span>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <a class="btn btn-primary" role="button" th:href="@{'/bilet/new'}">Adauga bilet nou</a>
             <a class="btn btn-primary" role="button" th:href="@{'/bilet/vanzari'}">Vizualizeaza vanzarile</a>
         </div>
-
     </div>
 </div>
 <div class="container">

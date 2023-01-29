@@ -12,8 +12,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <label for="pilot1" th:text="'Cel mai activ pilot in anul: '+${pilot1.an}"/>
-            <input id="pilot1" type="text" readonly th:value="${pilot1.pilot}"/>
+            <span th:text="'Cel mai activ pilot in anul '+${pilot1.an}"/>
+            <span th:text="${pilot1.pilot}" style="background-color: #FFFF00"/>
         </div>
     </div>
     <div class="row">

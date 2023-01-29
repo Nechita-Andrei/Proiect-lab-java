@@ -26,6 +26,9 @@ public class Client {
     @Column
     private Date data_nasterii;
 
+    @Column
+    private String cnp;
+
     @OneToOne
     @JoinColumn(unique = true, name = "id_contact", referencedColumnName = "id_contact")
     private Contact contact;
@@ -40,11 +43,12 @@ public class Client {
 
     }
 
-    public Client(String nume, String prenume, Date data_nasterii, Contact contact) {
+    public Client(String nume, String prenume, Date data_nasterii, Contact contact, String cnp) {
         this.nume = nume;
         this.prenume = prenume;
         this.data_nasterii = data_nasterii;
         this.contact = contact;
+        this.cnp= cnp;
     }
 
 
@@ -97,6 +101,11 @@ public class Client {
     }
 
 
+    public String getCnp() {
+        return cnp;
+    }
 
-
+    public void setCnp(String cnp) {
+        this.cnp = cnp;
+    }
 }

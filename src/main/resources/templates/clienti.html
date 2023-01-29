@@ -10,6 +10,15 @@
 </head>
 <body>
 <div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <a class="btn btn-primary" role="button" th:href="@{'/client/new'}">Adauga client nou</a>
+        </div>
+
+    </div>
+</div>
+<div class="container">
     <table class="table table-hover ">
         <thead class="thead-inverse">
         <tr>
@@ -19,6 +28,7 @@
             <th>Data nasterii</th>
             <th>Email</th>
             <th>Telefon</th>
+            <th>Cnp</th>
             <th>Actiuni</th>
 
         </tr>
@@ -30,24 +40,17 @@
             <td th:text="${client.data_nasterii}"></td>
             <td th:text="${client.contact.email}"></td>
             <td th:text="${client.contact.telefon}"></td>
+            <td th:text="${client.cnp}"></td>
             <td>
-                <a href="#" th:href="@{'/client/delete/'+${client.id_client}}">Sterge clientul</a>
-                <a href="#" th:href="@{'/client/vanzari/'+${client.id_client}}">Verifica raport anual(2022)</a>
+                <span><a href="#" th:href="@{'/client/delete/'+${client.id_client}}">Sterge clientul</a></span>
+                <span><a href="#" th:href="@{'/client/vanzari/'+${client.id_client}}">Verifica raport anual(2022)</a></span>
             </td>
 
         </tr>
     </table>
 </div>
 
-<div class="container">
-    <div class="row">
 
-        <div class="col-md-6">
-            <a class="btn btn-primary" role="button" th:href="@{'/client/new'}">Adauga client nou</a>
-        </div>
-
-    </div>
-</div>
 
 
 </body>
